@@ -3,7 +3,7 @@
 
 app.service('accountService', function (cityService) {
   var Account = {
-    daysLeft: 5,
+    daysLeft: 31,
     inventory: [],
     currentCash: 100,
     currentCity: '',
@@ -11,7 +11,7 @@ app.service('accountService', function (cityService) {
     gameOver: function(){
       this.highScores.push({score: this.currentCash});
       this.currentCash = 100;
-      this.daysLeft = 5;
+      this.daysLeft = 31;
       this.inventory = [];
     }
   };
