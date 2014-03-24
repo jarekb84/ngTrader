@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">    
+    <div class="col-xs-3">
+      <h2>Inventory</h2>
+      <div class="well">        
+        <div>
+          <strong>Days Left: </strong> {{ account.daysLeft }}  
+          <div ng-show="account.daysLeft === 0" class="alert alert-danger">Last day! Sell off all items!</div>
+        </div>
+        <div>
+          <strong>Cash: </strong> {{ account.currentCash | currency}}  
+        </div>                  
+        <div ng-repeat="item in account.inventory | orderBy:'name'">
+          {{item.name}}({{item.quantity}}) @ {{item.purchasePrice | currency}} each
+          <div>
+            <button class="label label-danger" ng-click="sellItem(item)">sell</button>  for {{item.marketPrice | currency}}
+          </div>          
+        </div>
+      </div>      
+    </div>
+    <div class="col-xs-6">
+      <h2>Market for {{ account.currentCity.name }}</h2>      
+      <table class="table table-hover">
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Action</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in commodities">
+          <td>{{ item.name }}</td>
+          <td>{{ item.currentPrice | currency }}</td>
+          <td>
+            <button class="btn btn-success" ng-click="buyItem(item, 1)" ng-hide="item.currentPrice > account.currentCash">Buy 1</button>            
+            <button class="btn btn-success" ng-click="buyItem(item, item.maxQuantityPurchasable)" ng-hide="item.maxQuantityPurchasable < 2">Buy {{item.maxQuantityPurchasable}}</button>
+          </td>          
+        </tr>
+      </tbody>
+      </table>
+    </div>
+    <div class="col-xs-3">
+      <h2>Cities</h2>
+      <ul>
+        <li ng-repeat="city in cities | orderBy:'name'">
+          
+          <div ng-if="city.name==account.currentCity.name">
+              <span class="bg-primary">{{city.name}}</span>
+          </div>
+          <div ng-if="city.name!=account.currentCity.name">
+              <a href="#" ng-click="goToCity(city)">{{city.name}}</a>
+          </div>
+        </li>        
+      </ul>
+      <h2>High Scores</h2>
+      <ul>
+        <li ng-repeat="highScore in account.highScores | orderBy:'score':true ">{{ highScore.score | currency}}</li>
+      </ul>
+    </div>
+  </div>  
+</div>
