@@ -42,7 +42,13 @@
       <h2>Cities</h2>
       <ul>
         <li ng-repeat="city in cities | orderBy:'name'">
-          <a href="#" ng-click="goToCity(city)">{{city.name}}</a>
+          
+          <div ng-if="city.name==account.currentCity.name">
+              <span class="bg-primary">{{city.name}}</span>
+          </div>
+          <div ng-if="city.name!=account.currentCity.name">
+              <a href="#" ng-click="goToCity(city)">{{city.name}}</a>
+          </div>
         </li>        
       </ul>
       <h2>High Scores</h2>

@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: GameCtrl', function () {
+describe('Controller: gameCtrl', function () {
 
   // load the controller's module
   beforeEach(module('ngTraderApp'));
 
-  var GameCtrl,
+  var gameCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GameCtrl = $controller('GameCtrl', {
+    gameCtrl = $controller('gameCtrl', {
       $scope: scope
     });
   }));

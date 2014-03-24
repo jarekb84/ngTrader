@@ -1,7 +1,7 @@
 'use strict';
 
 
-app.service('accountService', function (cityService) {
+app.service('accountSrvc', function (citySrvc) {
   var Account = {
     daysLeft: 31,
     inventory: [],
@@ -18,7 +18,7 @@ app.service('accountService', function (cityService) {
 
   if(!Account.currentCity){
     //set random city on game start
-    Account.currentCity = cityService.all[Math.floor(Math.random()*cityService.all.length)];
+    Account.currentCity = citySrvc.all[Math.floor(Math.random() * citySrvc.all.length)];
   }
 
   return Account;

@@ -11,16 +11,16 @@ var app = angular.module('ngTraderApp', [
 app.config(function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/game.html',
-      controller: 'GameCtrl'
+      templateUrl: 'components/game/game.tmpl.html',
+      controller: 'gameCtrl'
     })
     .when('/game', {
-      templateUrl: 'views/game.html',
-      controller: 'GameCtrl'
+      templateUrl: 'components/game/game.tmpl.html',
+      controller: 'gameCtrl'
     })
     .when('/nav', {
-      templateUrl: 'views/nav.html',
-      controller: 'NavCtrl'
+      templateUrl: 'components/nav/nav.tmpl.html',
+      controller: 'navCtrl'
     })
     .otherwise({
       redirectTo: '/'

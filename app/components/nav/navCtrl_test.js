@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: CommoditiesCtrl', function () {
+describe('Controller: navCtrl', function () {
 
   // load the controller's module
   beforeEach(module('ngTraderApp'));
 
-  var CommoditiesCtrl,
+  var navCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CommoditiesCtrl = $controller('CommoditiesCtrl', {
+    navCtrl = $controller('navCtrl', {
       $scope: scope
     });
   }));

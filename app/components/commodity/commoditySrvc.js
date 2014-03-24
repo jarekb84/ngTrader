@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('commodityService', function(accountService, $filter) {
+app.service('commoditySrvc', function(accountSrvc, $filter) {
   var commodities = [{
     name: 'Absinthe',
     minPrice: 500,
@@ -45,12 +45,12 @@ app.service('commodityService', function(accountService, $filter) {
 
   function updateMaxQuantityPurchasable() {
     commodities.forEach(function(item) {
-      item.maxQuantityPurchasable = Math.floor(accountService.currentCash / item.currentPrice);
+      item.maxQuantityPurchasable = Math.floor(accountSrvc.currentCash / item.currentPrice);
     });
   }
 
   function updateInventoryCurrentMarketPrice() {
-    accountService.inventory.forEach(function(item) {
+    accountSrvc.inventory.forEach(function(item) {
       var marketItem = $filter('filter')(commodities, item.name, true);
 
       if (marketItem.length) {
@@ -64,7 +64,7 @@ app.service('commodityService', function(accountService, $filter) {
     updatePrices: function() {
       commodities.forEach(function(item) {
         item.currentPrice = Math.floor((Math.random() * (item.maxPrice - item.minPrice) + item.minPrice) * 100) / 100;
-        item.maxQuantityPurchasable = Math.floor(accountService.currentCash / item.currentPrice);
+        item.maxQuantityPurchasable = Math.floor(accountSrvc.currentCash / item.currentPrice);
       });
 
       updateInventoryCurrentMarketPrice();
@@ -72,8 +72,8 @@ app.service('commodityService', function(accountService, $filter) {
     buyCommodity: function(item, quantity) {
       var totalCost = item.currentPrice * quantity;
       
-      if (accountService.currentCash >= totalCost) {
-        accountService.currentCash -= totalCost;
+      if (accountSrvc.currentCash >= totalCost) {
+        accountSrvc.currentCash -= totalCost;
 
         var purchasedItem = {
           name: item.name,
@@ -83,18 +83,18 @@ app.service('commodityService', function(accountService, $filter) {
         };
 
         updateMaxQuantityPurchasable();
-        accountService.inventory.push(purchasedItem);
+        accountSrvc.inventory.push(purchasedItem);
       }
     },
     sellCommodity: function(item) {
       var marketItem = $filter('filter')(commodities, item.name, true);
 
       if (marketItem.length) {
-        accountService.currentCash += (marketItem[0].currentPrice * item.quantity);
+        accountSrvc.currentCash += (marketItem[0].currentPrice * item.quantity);
       }
 
       updateMaxQuantityPurchasable();
-      accountService.inventory.splice(accountService.inventory.indexOf(item), 1);
+      accountSrvc.inventory.splice(accountSrvc.inventory.indexOf(item), 1);
     }
   };
 

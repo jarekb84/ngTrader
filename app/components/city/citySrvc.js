@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('cityService', function cityService() {
+app.service('citySrvc', function citySrvc() {
   var cities = [{
     name: 'Chicago'
   }, {
@@ -15,7 +15,7 @@ app.service('cityService', function cityService() {
     name: 'Miami'
   }];
 
-  var City ={
+  var City = {
     all: cities
   };
 
