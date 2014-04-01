@@ -3,45 +3,52 @@
 app.service('commoditySrvc', function(accountSrvc, $filter) {
   var commodities = [{
     name: 'Absinthe',
-    minPrice: 500,
-    maxPrice: 1000
+    basePrice: 511,
+    purchasedItems: []
   }, {
     name: 'Cognac',
-    minPrice: 100,
-    maxPrice: 200
+    basePrice: 256,
+    purchasedItems: []
   }, {
     name: 'Gin',
-    minPrice: 10,
-    maxPrice: 30
+    basePrice: 32,
+    purchasedItems: []
   }, {
     name: 'Mezcal',
-    minPrice: 50,
-    maxPrice: 100
+    basePrice: 128,
+    purchasedItems: []
   }, {
     name: 'Rum',
-    minPrice: 20,
-    maxPrice: 50
+    basePrice: 16,
+    purchasedItems: []
   }, {
     name: 'Tequila',
-    minPrice: 5,
-    maxPrice: 30
+    basePrice: 8,
+    purchasedItems: []
   }, {
     name: 'Vodka',
-    minPrice: 15,
-    maxPrice: 30
+    basePrice: 4,
+    purchasedItems: []
   }, {
     name: 'Whiskey',
-    minPrice: 20,
-    maxPrice: 50
+    basePrice: 64,
+    purchasedItems: []
   }, {
     name: 'Beer',
-    minPrice: 1,
-    maxPrice: 5
+    basePrice: 2,
+    purchasedItems: []
   }, {
     name: 'Wine',
-    minPrice: 10,
-    maxPrice: 1000
+    basePrice: 1024,
+    purchasedItems: []
   }];
+
+  var priceModification = {
+    normalRange: 20,
+    specialRange: 40
+  };
+
+  var transactionID = 0;
 
   function updateMaxQuantityPurchasable() {
     commodities.forEach(function(item) {
@@ -62,16 +69,33 @@ app.service('commoditySrvc', function(accountSrvc, $filter) {
   var Commodity = {
     all: commodities,
     updatePrices: function() {
+      var specialItem = commodities[Math.floor(Math.random() * commodities.length)],
+        priceOffset;
+
       commodities.forEach(function(item) {
-        item.currentPrice = Math.floor((Math.random() * (item.maxPrice - item.minPrice) + item.minPrice) * 100) / 100;
+        priceOffset = Math.floor(Math.random() * (priceModification.normalRange * 2)) - priceModification.normalRange;
+        item.priceHigh = false;
+
+        if (item.name === specialItem.name) {
+          priceOffset = Math.floor(Math.random() * (priceModification.specialRange * 2)) - priceModification.specialRange;
+          item.special = true;
+        }
+
+        if (priceOffset > 0) {
+          item.priceHigh = true;
+        }
+
+        item.priceOffset = priceOffset;
+        item.currentPrice = item.basePrice * (priceOffset / 100) + item.basePrice;
         item.maxQuantityPurchasable = Math.floor(accountSrvc.currentCash / item.currentPrice);
       });
 
       updateInventoryCurrentMarketPrice();
     },
     buyCommodity: function(item, quantity) {
-      var totalCost = item.currentPrice * quantity;
-      
+      var commodity = $filter('filter')(commodities, item.name, true)[0],
+        totalCost = item.currentPrice * quantity;
+
       if (accountSrvc.currentCash >= totalCost) {
         accountSrvc.currentCash -= totalCost;
 
@@ -79,22 +103,36 @@ app.service('commoditySrvc', function(accountSrvc, $filter) {
           name: item.name,
           purchasePrice: item.currentPrice,
           marketPrice: item.currentPrice,
-          quantity: quantity
+          quantity: quantity,
+          transactionID: transactionID
         };
 
         updateMaxQuantityPurchasable();
-        accountSrvc.inventory.push(purchasedItem);
+        commodity.purchasedItems.push(purchasedItem);
       }
     },
     sellCommodity: function(item) {
-      var marketItem = $filter('filter')(commodities, item.name, true);
+      var commodity = $filter('filter')(commodities, item.name, true)[0],
+        transaction, purchasedItem;
 
-      if (marketItem.length) {
-        accountSrvc.currentCash += (marketItem[0].currentPrice * item.quantity);
+      if (commodity) {
+        transaction = {
+          itemName: item.name,
+          profitEach: commodity.currentPrice - item.purchasePrice,
+          profitTotal: (commodity.currentPrice - item.purchasePrice) * item.quantity,
+          purchasePrice: item.purchasePrice,
+          sellPrice: commodity.currentPrice,
+          quantity: item.quantity
+        };
+
+        purchasedItem = $filter('filter')(commodities, item.name, true)[0],
+
+        //remove purchased item
+        commodity.purchasedItems.splice(commodity.purchasedItems.indexOf(item), 1);                
+        accountSrvc.transactions.push(transaction);
+        accountSrvc.currentCash += commodity.currentPrice * item.quantity;
       }
-
       updateMaxQuantityPurchasable();
-      accountSrvc.inventory.splice(accountSrvc.inventory.indexOf(item), 1);
     }
   };
 

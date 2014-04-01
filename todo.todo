@@ -1,0 +1,45 @@
+ ☐ use angular ui-router
+ ☐ refactor controller logic to follow best practice
+   ☐ move methods onto controller prototype
+   ☐ move properties off of the $scope
+       use controller as in html view
+       http://docs.angularjs.org/guide/concepts#controller
+       add ctrl properties to this. instead of $scope
+ ☐ move build system from grunt to gulp
+ ☐ when making yeoman genrator add keywords prop to package.json
+   example https://github.com/a1ee9b/generator-ghost-h5bp/blob/master/package.json
+ ☐ Add smoother transitions when elements appear/dissapear on screen
+ ☐ Store highscores in browser cache
+ ☐ Add better end game notification
+ ☐ Fix grunt dist task to output all files needed and minified, esp bower js/css
+ ✔ Highlight current city and prevent it from being clickable @done (14-03-31 23:47)
+ ✔ Add price history/graph for current month, easier to figure out if low/high @done (14-03-31 23:44)
+ ✔ Add transaction history for current game @done (14-03-31 23:44)
+ ✔ Add random events to change min/max price @done (14-03-31 23:47)
+ ✔ Update interface of inventory to make it easier to see purchased price and current market price @done (14-03-31 23:44)
+ ☐ Add unit tests for business logic
+ ✔ Randomize min/max ranges for all items each new game @done (14-03-31 23:44)
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ use new naming convention for controllers, serices, filters, ect.. @done (14-03-31 19:35)
+  controller      ctrl
+  directive       drtv    
+  filter          fltr
+  service         srvc
+  template        tmpl //html template    
+  module-controller.js
+  module-directive.js
+  module-filter.js
+  module-serivce.js
+  moudle.template.html
+  OR
+  moduleCtrl.js
+  moduleDrtv.js
+  moduleFltr.js
+  moduleSrvc.js
+  module.tmpl.html
+ ✔ push site to github pages @done (14-03-24 23:39)
+ ✔ project file structure update @done (14-03-23 23:00)
+ ✔ this is a task @done (14-03-23 18:59) @project(stuff to do today)
+ ✔ push chagnes for gulpUtilityBelt @done (14-03-23 12:13)

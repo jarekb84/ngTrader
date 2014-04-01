@@ -5,6 +5,7 @@ app.service('accountSrvc', function (citySrvc) {
   var Account = {
     daysLeft: 31,
     inventory: [],
+    transactions: [],
     currentCash: 100,
     currentCity: '',
     highScores:[],
@@ -13,6 +14,7 @@ app.service('accountSrvc', function (citySrvc) {
       this.currentCash = 100;
       this.daysLeft = 31;
       this.inventory = [];
+      this.transactions= [];
     }
   };
 

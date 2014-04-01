@@ -26,4 +26,12 @@ app.controller('gameCtrl', function($scope, commoditySrvc, citySrvc, accountSrvc
     commoditySrvc.sellCommodity(item);
     $scope.account = accountSrvc;
   };
+
+  $scope.setMarketHoverItem = function (item) {
+    $scope.marketHoverItem = item.name;
+  };
+  
+  $scope.resetMarketHoverItem = function () {
+    $scope.marketHoverItem = '';
+  };
 });

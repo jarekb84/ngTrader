@@ -1,0 +1,50 @@
+controller      ctrl
+service         srvc
+filter          fltr
+directive       drtv    
+template        tmpl //html template
+
+$ yo angular:controller products.preview.Preview
+$ yo angular:service products.preview.Preview
+$ yo angular:service products.preview.PreviewFilter
+
+|-- src/
+|   |-- app/
+|   |   |-- products/
+|   |   |   |-- products-module.js
+|   |   |   |-- preview/
+|   |   |   |   |-- preview-module.js
+|   |   |   |   |-- preview-controller.js
+|   |   |   |   |-- preview-controller.spec.js
+|   |   |   |   |-- preview-service.js
+|   |   |   |   |-- preview-service.spec.js
+|   |   |   |   |-- preview-filter-service.js
+|   |   |   |   |-- preview-filter-service.spec.js
+
+
+where preview-module.js will collect the parts:
+    angular.module('products.preview', ['preview-controller', 'preview-service', 'preview-filter-service', 'preview-directives',  ..]);
+
+and products-module.js will look like:
+    angular.module('products', ['preview-module']);
+    
+    
+    
+$ yo angular:route "/products"    
+
+|-- src/
+|   |-- app/
+|   |   |-- products/
+|   |   |   |-- products.js
+|   |   |   |-- products.spec.js
+|   |   |   |-- products.tpl.html
+
+$ yo angular:route "/products/show"
+
+|-- src/
+|   |-- app/
+|   |   |-- products/
+|   |   |   |-- show/
+|   |   |   |   |-- show.js
+|   |   |   |   |-- show.spec.js
+|   |   |   |   |-- show.tpl.html
