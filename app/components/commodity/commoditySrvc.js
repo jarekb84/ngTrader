@@ -3,52 +3,50 @@
 app.service('commoditySrvc', function(accountSrvc, $filter) {
   var commodities = [{
     name: 'Absinthe',
-    basePrice: 511,
+    basePrice: 51100,
     purchasedItems: []
   }, {
     name: 'Cognac',
-    basePrice: 256,
+    basePrice: 25600,
     purchasedItems: []
   }, {
     name: 'Gin',
-    basePrice: 32,
+    basePrice: 3200,
     purchasedItems: []
   }, {
     name: 'Mezcal',
-    basePrice: 128,
+    basePrice: 12800,
     purchasedItems: []
   }, {
     name: 'Rum',
-    basePrice: 16,
+    basePrice: 1600,
     purchasedItems: []
   }, {
     name: 'Tequila',
-    basePrice: 8,
+    basePrice: 800,
     purchasedItems: []
   }, {
     name: 'Vodka',
-    basePrice: 4,
+    basePrice: 400,
     purchasedItems: []
   }, {
     name: 'Whiskey',
-    basePrice: 64,
+    basePrice: 6400,
     purchasedItems: []
   }, {
     name: 'Beer',
-    basePrice: 2,
+    basePrice: 200,
     purchasedItems: []
   }, {
     name: 'Wine',
-    basePrice: 1024,
+    basePrice: 102400,
     purchasedItems: []
   }];
 
   var priceModification = {
-    normalRange: 20,
-    specialRange: 40
+    normalRange: 20, // equates to a range between -20% and +20%
+    specialRange: 20 // adds onto normalRange, giving a daily special a range of -40% to +40%
   };
-
-  var transactionID = 0;
 
   function updateMaxQuantityPurchasable() {
     commodities.forEach(function(item) {
@@ -56,41 +54,42 @@ app.service('commoditySrvc', function(accountSrvc, $filter) {
     });
   }
 
-  function updateInventoryCurrentMarketPrice() {
-    accountSrvc.inventory.forEach(function(item) {
-      var marketItem = $filter('filter')(commodities, item.name, true);
-
-      if (marketItem.length) {
-        item.marketPrice = marketItem[0].currentPrice;
-      }
-    });
-  }
-
   var Commodity = {
     all: commodities,
     updatePrices: function() {
       var specialItem = commodities[Math.floor(Math.random() * commodities.length)],
-        priceOffset;
+        priceRange, priceOffset;
+      
+      accountSrvc.netWorth = accountSrvc.currentCash;
 
       commodities.forEach(function(item) {
-        priceOffset = Math.floor(Math.random() * (priceModification.normalRange * 2)) - priceModification.normalRange;
         item.priceHigh = false;
+        item.special = false;
+        item.priceChanged = true;
+        priceRange = priceModification.normalRange;
 
         if (item.name === specialItem.name) {
-          priceOffset = Math.floor(Math.random() * (priceModification.specialRange * 2)) - priceModification.specialRange;
+          priceRange += priceModification.specialRange;
           item.special = true;
         }
+
+        priceOffset = Math.floor(Math.random() * (priceRange * 2)) - priceRange;
 
         if (priceOffset > 0) {
           item.priceHigh = true;
         }
-
-        item.priceOffset = priceOffset;
-        item.currentPrice = item.basePrice * (priceOffset / 100) + item.basePrice;
+        
+        if(priceOffset === 0){
+          item.priceChanged = false;
+        }
+        
+        item.currentPrice = item.basePrice * (priceOffset/100) + item.basePrice;
         item.maxQuantityPurchasable = Math.floor(accountSrvc.currentCash / item.currentPrice);
-      });
 
-      updateInventoryCurrentMarketPrice();
+        item.purchasedItems.forEach(function (purchasedItem) {
+          accountSrvc.netWorth += purchasedItem.quantity * item.currentPrice;
+        });
+      });
     },
     buyCommodity: function(item, quantity) {
       var commodity = $filter('filter')(commodities, item.name, true)[0],
@@ -103,8 +102,7 @@ app.service('commoditySrvc', function(accountSrvc, $filter) {
           name: item.name,
           purchasePrice: item.currentPrice,
           marketPrice: item.currentPrice,
-          quantity: quantity,
-          transactionID: transactionID
+          quantity: quantity
         };
 
         updateMaxQuantityPurchasable();
@@ -128,7 +126,7 @@ app.service('commoditySrvc', function(accountSrvc, $filter) {
         purchasedItem = $filter('filter')(commodities, item.name, true)[0],
 
         //remove purchased item
-        commodity.purchasedItems.splice(commodity.purchasedItems.indexOf(item), 1);                
+        commodity.purchasedItems.splice(commodity.purchasedItems.indexOf(item), 1);
         accountSrvc.transactions.push(transaction);
         accountSrvc.currentCash += commodity.currentPrice * item.quantity;
       }

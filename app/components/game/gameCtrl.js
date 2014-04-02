@@ -6,32 +6,41 @@ app.controller('gameCtrl', function($scope, commoditySrvc, citySrvc, accountSrvc
   $scope.account = accountSrvc;
   $scope.cities = citySrvc.all;
 
-  $scope.goToCity = function (city) {
+  $scope.goToCity = function(city) {
     commoditySrvc.updatePrices();
     accountSrvc.currentCity = city;
-    if(accountSrvc.daysLeft > 0){
-      accountSrvc.daysLeft -= 1;
-    } else{
+    accountSrvc.daysLeft -= 1;
+    
+    if (accountSrvc.daysLeft === 1) {
+      accountSrvc.showLastDayMessage = true;
+    } else if (accountSrvc.daysLeft === 0){
       accountSrvc.gameOver();
     }
-    
   };
 
-  $scope.buyItem = function (item, quantity) {
+  $scope.buyItem = function(item, quantity) {
     commoditySrvc.buyCommodity(item, quantity);
     $scope.account = accountSrvc;
   };
 
-  $scope.sellItem = function (item) {
+  $scope.sellItem = function(item) {
     commoditySrvc.sellCommodity(item);
     $scope.account = accountSrvc;
   };
 
-  $scope.setMarketHoverItem = function (item) {
+  $scope.setMarketHoverItem = function(item) {
     $scope.marketHoverItem = item.name;
   };
-  
-  $scope.resetMarketHoverItem = function () {
+
+  $scope.resetMarketHoverItem = function() {
     $scope.marketHoverItem = '';
+  };
+
+  $scope.resetHighScores = function () {
+    accountSrvc.resetHighScores();
+  };
+
+  $scope.convertToDollars = function (amount) {
+    return amount/100;
   };
 });

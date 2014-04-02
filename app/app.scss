@@ -183,3 +183,13 @@ body {
         vertical-align: middle;    
     }
 }
+
+nav iframe {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  //can't target contents of iframe to float them right
+  margin-right: -75px;
+}
+.dailySpecial{
+  font-weight: bold;
+}

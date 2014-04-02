@@ -5,10 +5,11 @@ var app = angular.module('ngTraderApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'jmdobry.angular-cache'
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $angularCacheFactoryProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'components/game/game.tmpl.html',
@@ -25,4 +26,8 @@ app.config(function($routeProvider) {
     .otherwise({
       redirectTo: '/'
     });
+
+  $angularCacheFactoryProvider.setCacheDefaults({
+    storageMode: 'localStorage'
+  });
 });

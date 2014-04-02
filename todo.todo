@@ -1,3 +1,34 @@
+Game Features:
+✔ Store highscores in browser cache @done (14-04-01 23:05)
+☐ Add better end game notification
+  ☐ When last day, replace city nav with "Submit Score" button
+    ☐ Clicking this opens modal with current game score, local high scores, global high scores
+    ☐ Option to start new game
+      ☐ Allow user to select number of days, 30/60/90
+☐ At start of each game, have each city randomly select a commodity that it will specialize in, this will affect the range by an extra 10%
+  this will add to the special item of the day if it is the same item as the citities speciality
+  Add an icon or some other notification so the user knows what city specializes in an item. 
+  potentially little "i" icon that when you hover over you can get a more info about the price. have base text say "potential profit $x,xxx.xx 'i'"
+  may have issues with hover on hover usability
+ ☐ Add tutorial and instructions
+   use hover over popups that explain the game in a quick 30sec tutorial
+   have more in depth info in a info/doc section
+ ☐ when hovering over an item to buy, show potential profit based on avg profit per item from past sales
+   figure out a good way to word this so user knows what this number is based off of, something like "expected profit based on prior average per item" but more concise 
+ ✔ Move Fork me button to left side of app, too easy to accidently click on it when goig to a city @done (14-04-01 20:37)
+ ✔ When price matches base price, don't use up/down arrow icons, use minus sign @done (14-04-01 23:05)
+ ✔ Highlight daily special @done (14-04-01 23:05)
+ ✔ Implement networth calculation @done (14-04-01 23:14)
+   this should be based off of all current inventory if sold at current market prices plus cash on hand
+ ✔ make numbers formatted with commas @done (14-04-01 23:57)
+ ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction
+ ☐ Add settings section to configure
+   ☐ Starting Cash
+   ☐ number of days
+   ☐ Commodity names
+   ☐ City Names
+
+Code:
  ☐ use angular ui-router
  ☐ refactor controller logic to follow best practice
    ☐ move methods onto controller prototype
@@ -8,20 +39,22 @@
  ☐ move build system from grunt to gulp
  ☐ when making yeoman genrator add keywords prop to package.json
    example https://github.com/a1ee9b/generator-ghost-h5bp/blob/master/package.json
- ☐ Add smoother transitions when elements appear/dissapear on screen
- ☐ Store highscores in browser cache
- ☐ Add better end game notification
- ☐ Fix grunt dist task to output all files needed and minified, esp bower js/css
- ✔ Highlight current city and prevent it from being clickable @done (14-03-31 23:47)
- ✔ Add price history/graph for current month, easier to figure out if low/high @done (14-03-31 23:44)
- ✔ Add transaction history for current game @done (14-03-31 23:44)
- ✔ Add random events to change min/max price @done (14-03-31 23:47)
- ✔ Update interface of inventory to make it easier to see purchased price and current market price @done (14-03-31 23:44)
+ ☐ Add smoother transitions when elements appear/dissapear on screen 
+ ✔ Fix grunt dist task to output all files needed and minified, esp bower js/css @done (14-04-02 02:00)
  ☐ Add unit tests for business logic
- ✔ Randomize min/max ranges for all items each new game @done (14-03-31 23:44)
-
+ ☐ Add grunt task to remove instances of console.log from all js
+ ✔ Remove unused bower components @done (14-04-02 02:15)
+ ✔ Make site more responsive at lower resolutions @done (14-04-02 00:31)
+ ✔ currency is stored in cents to avoid problems with float-point logic @done (14-04-01 23:57)
+   add function to convert cents to dollars wherever currency is used
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Highlight current city and prevent it from being clickable @done (14-03-31 23:47)
+ ✔ Add random events to change min/max price @done (14-03-31 23:47)
+ ✔ Update interface of inventory to make it easier to see purchased price and current market price @done (14-03-31 23:44)
+ ✔ Randomize min/max ranges for all items each new game @done (14-03-31 23:44)
+ ✔ Add transaction history for current game @done (14-03-31 23:44)
+ ✔ Add price history/graph for current month, easier to figure out if low/high @done (14-03-31 23:44)
  ✔ use new naming convention for controllers, serices, filters, ect.. @done (14-03-31 19:35)
   controller      ctrl
   directive       drtv    
