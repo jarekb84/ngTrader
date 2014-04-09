@@ -1,91 +1,102 @@
-<div ng-show="account.showLastDayMessage" class="alert alert-danger">Last day! Sell off all items!</div>
-<div class="row">
-  <div class="col-md-3 col-xs-12">
-    <div class="accountInfo bg-info">
-      <strong>Net Worth: </strong>{{ convertToDollars(account.netWorth) | currency}}
+<div ng-controller="gameCtrl as game">
+  <div ng-show="game.gameSrvc_.lastDay" class="alert alert-danger">Last day! Sell off all items!</div>
+  <div class="row">
+    <div class="col-md-3 col-xs-12">
+      <div class="accountInfo bg-info">                
+        <strong>Net Worth:</strong> {{game.accountSrvc_.netWorth | toDollar}}
+      </div>
+    </div>
+    <div class="col-md-9 col-xs-12">      
+      <button ng-show="game.gameSrvc_.lastDay" class="btn btn-primary pull-right" ng-click="game.submitScore()">Submit Score</button>
+      <ul ng-hide="game.gameSrvc_.lastDay" class="nav nav-pills pull-right">        
+        <li ng-repeat="city in game.citySrvc_.cities | orderBy:'name'" ng-class="game.isCurrentCity(city) ? 'active' : ''">
+          <a ng-if="game.isCurrentCity(city)">{{city.name}} <div class="citySpecialty">{{city.specialtyItem.name}}</div></a>
+          <a ng-if="!game.isCurrentCity(city)" href="#" ng-click="game.goToCity(city)">{{city.name}}<div class="citySpecialty">{{city.specialtyItem.name}}</div></a>
+
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="col-md-9 col-xs-12">
-    <ul class="nav nav-pills pull-right">
-      <li ng-repeat="city in cities | orderBy:'name'" ng-class="(city.name==account.currentCity.name) ? 'active' : ''">
-        <a ng-if="city.name==account.currentCity.name">{{city.name}}</a>
-        <a ng-if="city.name!=account.currentCity.name" href="#" ng-click="goToCity(city)">{{city.name}}</a> 
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5" >
-    <h2>
-      <strong>Days Left:</strong> {{ account.daysLeft }}
-      <span class="pull-right">
-        <strong>Cash:</strong> {{ convertToDollars(account.currentCash) | currency}}
-      </span>
-    </h2>
-    <table id="marketTable" class="table table-hover table-condensed">
-      <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Action</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in commodities | orderBy: 'name'" ng-mouseover="setMarketHoverItem(item)" ng-mouseleave="resetMarketHoverItem()">
-          <td width="150px">
-            <i class="fa" ng-if="item.priceChanged" ng-class="(item.priceHigh) ? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'"></i> 
-            <i class="fa fa-minus-circle" ng-if="!item.priceChanged"></i> 
-            <span ng-class="(item.special) ? 'dailySpecial' : ''">{{ item.name }}</span>
-          </td>
-          <td width="100px">{{ convertToDollars(item.currentPrice) | currency }}</td>
-          <td>
-            <p ng-hide="item.maxQuantityPurchasable < 1">
-              <button class="btn btn-success" ng-click="buyItem(item, 1)" ng-hide="item.currentPrice > account.currentCash">Buy 1</button>
-              <button class="btn btn-success" ng-click="buyItem(item, item.maxQuantityPurchasable)" ng-hide="item.maxQuantityPurchasable < 2">Buy {{ item.maxQuantityPurchasable | number }}</button>
-            </p>
-            <p ng-repeat="purchasedItem in item.purchasedItems">
-              <button class="btn btn-danger" ng-click="sellItem(purchasedItem)">sell {{ purchasedItem.quantity | number }}</button>
-              bought @ {{ convertToDollars(purchasedItem.purchasePrice) | currency }}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7">
-    <div class="col-xs-12 transactions">
-      <h2>Transactions</h2>
-      <table class="table table-condensed table-hover">
+  <div class="row">
+    <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5">
+      <h2>
+        <strong>Days Left:</strong> {{game.gameSrvc_.daysLeft}}
+        <span class="pull-right">
+          <strong>Cash:</strong> {{game.accountSrvc_.currentCash | toDollar}}
+        </span>
+      </h2>
+      <table id="marketTable" class="table table-hover table-condensed">
         <thead>
-          <tr>
-            <th>Count</th>
-            <th>Name</th>
-            <th>Buy @</th>
-            <th>Sold @</th>
-            <th>Profit Each</th>
-            <th>Profit Total</th>
-          </tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Action</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in account.transactions | orderBy:'-profitEach' | filter:marketHoverItem">
-            <td>{{item.quantity | number }}</td>
-            <td>{{item.itemName}}</td>
-            <td>{{convertToDollars(item.purchasePrice) | currency}}</td>
-            <td>{{convertToDollars(item.sellPrice) | currency}}</td>
-            <td>
-              <strong>{{convertToDollars(item.profitEach) | currency}}</strong>
+          <tr ng-repeat="item in game.commoditySrvc_.commodities | orderBy: 'name'" 
+            ng-mouseover="game.setMarketHoverItem(item)" 
+            ng-mouseleave="game.resetMarketHoverItem()">
+            <td width="150px">
+              <i class="fa fa-arrow-circle-down" ng-if="item.priceChanged && !item.priceHigh" tooltip="Price is lower than normal"></i> 
+              <i class="fa fa-arrow-circle-up" ng-if="item.priceChanged && item.priceHigh"tooltip="Price is higher than normal"></i> 
+              <i class="fa fa-minus-circle" ng-if="!item.priceChanged" tooltip="Price is equal to norm"></i> 
+              <span>{{ item.name }}</span>
+              <span class="pull-right">
+                <i class="fa fa-bolt" ng-if="item.dailySpecial" tooltip="Daily Special"></i>  
+                <i class="fa fa-trophy" ng-if="item.citySpecialty" tooltip="City Specialty"></i>              
+              </span>
             </td>
-            <td>
-              <strong>{{convertToDollars(item.profitTotal) | currency}}</strong>
+            <td width="100px">{{item.currentPrice | toDollar}}</td>
+            <td class="row">
+              <div class="col-xs-4">                
+                <button class="btn btn-success" 
+                  ng-click="game.buyItem(item, item.maxQuantityPurchasable)" 
+                  ng-hide="item.maxQuantityPurchasable < 1" 
+                  tooltip-popup-delay="500" 
+                  tooltip="Expected profit based on historical sales: {{game.getExpectedProfit(item) | currency}}">
+                  Buy {{ item.maxQuantityPurchasable | number }}
+                </button>
+              </div>
+              <div class="col-xs-8">
+                <div ng-repeat="purchasedItem in item.purchasedItems">
+                  <button class="btn btn-danger" ng-click="game.sellItem(purchasedItem)">sell {{purchasedItem.quantity | number}}</button>
+                  bought @ {{ purchasedItem.purchasePrice | toDollar }}
+                </div>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-xs-12">
-      <h2>High Scores</h2>
-      <a href="#" ng-click="resetHighScores()">reset</a>
-      <ul>
-        <li ng-repeat="highScore in account.highScores | orderBy:'-score' ">{{ convertToDollars(highScore.score) | currency}}</li>
-      </ul>
+    <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7">
+      <div class="col-xs-12 transactions">
+        <h2>Transactions</h2>
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Buy @</th>
+              <th>Sold @</th>
+              <th>Profit Each</th>
+              <th>Profit Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in game.accountSrvc_.transactions | orderBy:'-profitEach' | filter:game.marketHoverItem">
+              <td>{{item.quantity | number }}</td>
+              <td>{{item.itemName}}</td>
+              <td>{{item.purchasePrice | toDollar}}</td>
+              <td>{{item.sellPrice | toDollar}}</td>
+              <td>
+                <strong>{{item.profitEach | toDollar}}</strong>
+              </td>
+              <td>
+                <strong>{{item.profitTotal | toDollar}}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>      
     </div>
   </div>
 </div>
