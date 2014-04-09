@@ -1,7 +1,8 @@
 'use strict';
+goog.provide('ngTrader.city.citySrvc');
 
-app.service('citySrvc', function citySrvc() {
-  var cities = [{
+ngTrader.city.citySrvc = function() {
+  this.cities = [{
     name: 'Chicago'
   }, {
     name: 'New York'
@@ -14,10 +15,16 @@ app.service('citySrvc', function citySrvc() {
   }, {
     name: 'Miami'
   }];
+  
+  this.currentCity = null;
+};
 
-  var City = {
-    all: cities
-  };
+ngTrader.city.citySrvc.prototype.getRandomCity = function() {
+  this.currentCity = this.cities[Math.floor(Math.random() * this.cities.length)];
+};
 
-  return City;
-});
+ngTrader.city.citySrvc.prototype.setCurrentCity = function(city) {
+  this.currentCity = city;
+};
+
+ngTrader.city.service('citySrvc', ngTrader.city.citySrvc);

@@ -1,15 +1,29 @@
-/* global app:true */
 'use strict';
+goog.require('ngTrader.account');
+goog.require('ngTrader.city');
+goog.require('ngTrader.commodity');
+goog.require('ngTrader.common');
+goog.require('ngTrader.game');
+goog.require('ngTrader.highScore');
 
-var app = angular.module('ngTraderApp', [
+goog.provide('ngTrader.application.module');
+
+ngTrader.application.module = angular.module('ngTrade2r', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'jmdobry.angular-cache'
+  'jmdobry.angular-cache',
+  'ui.bootstrap',
+  ngTrader.account.name,
+  ngTrader.city.name,
+  ngTrader.commodity.name,
+  ngTrader.common.name,
+  ngTrader.game.name,
+  ngTrader.highScore.name
 ]);
 
-app.config(function($routeProvider, $angularCacheFactoryProvider) {
+ngTrader.application.module.config(function($routeProvider, $angularCacheFactoryProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'components/game/game.tmpl.html',
@@ -22,6 +36,10 @@ app.config(function($routeProvider, $angularCacheFactoryProvider) {
     .when('/nav', {
       templateUrl: 'components/nav/nav.tmpl.html',
       controller: 'navCtrl'
+    })
+    .when('/highScores', {
+      templateUrl: 'components/highScore/highScore.tmpl.html',
+      controller: 'highScoreCtrl'
     })
     .otherwise({
       redirectTo: '/'

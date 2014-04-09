@@ -7,13 +7,14 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  var pkg = require('./package.json');  
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -22,7 +23,8 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      version: pkg.version
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -287,8 +289,7 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        },
-        {
+        }, {
           expand: true,
           flatten: true,
           cwd: '<%= yeoman.app %>',
@@ -319,43 +320,31 @@ module.exports = function (grunt) {
       ]
     },
 
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= yeoman.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
     // Test settings
     karma: {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+
+    'string-replace': {
+      versionUpdate: {
+        files: {
+          '<%= yeoman.app %>/components/nav/nav.tmpl.html': '<%= yeoman.app %>/components/nav/nav.tmpl.html'
+        },
+        options: {
+          replacements: [{
+            pattern: /<!-- package.version:start -->v(.*?)<!-- package.version:end -->/ig ,
+            replacement: '<!-- package.version:start -->v'+ pkg.version +'<!-- package.version:end -->'
+          }]
+        }
+      }
     }
   });
 
 
-  grunt.registerTask('serve', function (target) {
+  grunt.registerTask('serve', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
@@ -363,6 +352,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bowerInstall',
+      'string-replace',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -370,7 +360,7 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', function () {
+  grunt.registerTask('server', function() {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve']);
   });
@@ -385,6 +375,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bowerInstall',
+    'string-replace',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -403,5 +394,9 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('jbx', [
+    'string-replace'
   ]);
 };

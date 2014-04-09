@@ -1,3 +1,5 @@
+[![devDependency Status](https://david-dm.org/jarekb84/ngTrader/dev-status.png)](https://david-dm.org/jarekb84/ngTrader#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jarekb84/ngTrader.png)](https://codeclimate.com/github/jarekb84/ngTrader)
+
 ngTrader
 ================
 Simple trading game built in angular. Start with $100 and see how rich you can get in 30 days!
@@ -8,6 +10,16 @@ Simple trading game built in angular. Start with $100 and see how rich you can g
 Current backlog can be found [here](todo.todo). Uses SublimeText [PlainTasks](https://sublime.wbond.net/packages/PlainTasks) plugin.
 
 ## Changelog
+**[v0.5.0 released 2014-04-09](https://github.com/jarekb84/ngTrader/releases/tag/v0.5.0)**
+* Cities can now specialize in an item for a single playthough, increasing the possible price range
+    - City navigation tabs show what their specialty below the city name
+* Hovering over a buy button now gives estimate of potential profits based on historical sales data within a playthrough.
+* Added icons and tooltips
+* Moved highscores to seperate view
+* Cleaned up UI
+* Added submit button after 30 days are up
+* Refactored codebase to get closer to google's angular style guide
+
 **[v0.4.0 released 2014-04-02](https://github.com/jarekb84/ngTrader/releases/tag/v0.4.0)**
 * Highscores are now stored between sessions
 * Cleanup of pricing logic

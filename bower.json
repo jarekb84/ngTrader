@@ -1,18 +1,20 @@
 {
   "name": "ng-trader",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "dependencies": {
-    "angular": "1.2.6",    
-    "angular-resource": "1.2.6",
-    "angular-cookies": "1.2.6",
-    "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6",
+    "angular": "1.2.16",
+    "angular-resource": "1.2.16",
+    "angular-cookies": "1.2.16",
+    "angular-sanitize": "1.2.16",
+    "angular-route": "1.2.16",
     "bootstrap-sass-official": "~3.1.1",
     "font-awesome": "4.0.4-wip",
-    "angular-cache": "~2.3.3"
+    "angular-cache": "~2.3.3",
+    "closure-library": "https://closure-library.googlecode.com/files/closure-library-20130212-95c19e7f0f5f.zip",    
+    "angular-bootstrap": "~0.10.0"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.6",
-    "angular-scenario": "1.2.6"
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
   }
 }

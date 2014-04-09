@@ -1,0 +1,6 @@
+    <ul class="nav nav-pills pull-right">
+      <li ng-repeat="city in cities.all | orderBy:'name'" ng-class="(city.name==cities.currentCity.name) ? 'active' : ''">
+        <a ng-if="city.name==account.currentCity.name">{{city.name}}</a>
+        <a ng-if="city.name!=account.currentCity.name" href="#" ng-click="goToCity(city)">{{city.name}}</a> 
+      </li>
+    </ul>

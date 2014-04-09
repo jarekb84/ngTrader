@@ -1,0 +1,11 @@
+<div ng-controller="highScoreCtrl as highScore">
+  <div class="col-xs-12">
+    <h2>High Scores</h2>
+    <a href="#" ng-click="highScore.resetHighScores()">reset</a>
+    <ul>
+      <li ng-repeat="score in highScore.highScoreSrvc_.highScores | orderBy:'-score' ">
+        {{score.score | toDollar}}
+      </li>
+    </ul>
+  </div>
+</div>
