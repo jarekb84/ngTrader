@@ -295,6 +295,12 @@ module.exports = function(grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>/fonts',
           src: ['bower_components/font-awesome/fonts/*']
+        }, {
+          expand: true,
+          flatten: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: ['bower_components/closure-library/closure/goog/deps.js']
         }]
       },
       styles: {

@@ -1,6 +1,5 @@
 Bugs:
   ☐ Hitting score reset triggers city price update
-  ✔ High score reset not working during game play, only updates after refresh @done (14-04-09 00:18)
 
 Game Features:
 ☐ Add better end game notification
@@ -8,18 +7,10 @@ Game Features:
     ☐ Clicking this opens modal with current game score, local high scores, global high scores
     ☐ Option to start new game
       ☐ Allow user to select number of days, 30/60/90
-✔ At start of each game, have each city randomly select a commodity that it will specialize in, this will affect the range by an extra 10% @done (14-04-08 22:05)
-  this will add to the special item of the day if it is the same item as the citities speciality
-  Add an icon or some other notification so the user knows what city specializes in an item. 
-  potentially little "i" icon that when you hover over you can get a more info about the price. have base text say "potential profit $x,xxx.xx 'i'"
-  may have issues with hover on hover usability
  ☐ Add tutorial and instructions
    use hover over popups that explain the game in a quick 30sec tutorial
    have more in depth info in a info/doc section
- ✔ when hovering over an item to buy, show potential profit based on avg profit per item from past sales @done (14-04-08 00:14)
-   figure out a good way to word this so user knows what this number is based off of, something like "expected profit based on prior average per item" but more concise    
  ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction
- ✔ Add current version number to ui @done (14-04-08 22:35)
  ☐ Hide transaction columns as avaialbe screenspace decrease
    Count, Profit Each, and Proift total are not really needed
  ☐ Add dates to high score log
@@ -27,8 +18,6 @@ Game Features:
    since you can navigate back and forth between several views now, the state is kept
    restarting game may not be too intuative.
  ☐ Set max height of transactions table, overflow scroll y
- ✔ rename transaction table count heading to # @done (14-04-03 23:04)
- ✔ Add high scores view, remove high scores from normal game screen @done (14-04-03 23:04)   
  ☐ Add settings section to configure
    ☐ Starting Cash
    ☐ number of days
@@ -38,30 +27,41 @@ Game Features:
 Code:
  ☐ use angular ui-router
  ☐ refactor controller logic to follow best practice
-   ✔ move methods onto controller prototype @done (14-04-03 21:57)
-   ✔ move properties off of the $scope @done (14-04-03 22:19)
-       use controller as in html view
-       http://docs.angularjs.org/guide/concepts#controller
-       add ctrl properties to this. instead of $scope
  ☐ move build system from grunt to gulp
  ☐ when making yeoman genrator add keywords prop to package.json
    example https://github.com/a1ee9b/generator-ghost-h5bp/blob/master/package.json
  ☐ Add smoother transitions when elements appear/dissapear on screen 
  ☐ Add unit tests for business logic
  ☐ Add grunt task to remove instances of console.log from all js
- ✔ Create game service that will handle high scores, game over process, and anything else related @done (14-04-06 13:43)
- ✔ Calculate marekt item average profit per for hover over when doing price updates when user enters new city @done (14-04-08 00:15)
-   this loop maybe getting heavy since it will be looping through all comodioties, looping through purchased commodoties, and now will filter the transaction log
-   Good place to add average calculatio is when you are adding to the log, ie when sellilng an item. Do the calc once and update the commodity with avg price instead of doing it on each city change for all items everytime
  ☐ Start looking at perfomance turning plugins like batarang and chrome dev tools to see where bottle necks are
- ✔ Add code complexity and dev dependency badges @done (14-04-02 23:59)
  ☐ Set up travis-CI builds
  ☐ Create grunt task to hanlde pushes of dist tree to git hub pages
- ✔ Setup Google Analytics account @done (14-04-03 22:25)
  ☐ Clean up sass file
  ☐ DevDependencies are out of date
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ High score reset not working during game play, only updates after refresh @done (14-04-09 00:18) @project(Bugs)
+ ✔ At start of each game, have each city randomly select a commodity that it will specialize in, this will affect the range by an extra 10% @done (14-04-08 22:05)
+  this will add to the special item of the day if it is the same item as the citities speciality
+  Add an icon or some other notification so the user knows what city specializes in an item. 
+  potentially little "i" icon that when you hover over you can get a more info about the price. have base text say "potential profit $x,xxx.xx 'i'"
+  may have issues with hover on hover usability
+ ✔ when hovering over an item to buy, show potential profit based on avg profit per item from past sales @done (14-04-08 00:14) @project(Game Features)
+  figure out a good way to word this so user knows what this number is based off of, something like "expected profit based on prior average per item" but more concise    
+ ✔ Add current version number to ui @done (14-04-08 22:35) @project(Game Features)
+ ✔ rename transaction table count heading to # @done (14-04-03 23:04) @project(Game Features)
+ ✔ Add high scores view, remove high scores from normal game screen @done (14-04-03 23:04)    @project(Game Features)
+ ✔ move methods onto controller prototype @done (14-04-03 21:57) @project(Game Features / Code)
+ ✔ move properties off of the $scope @done (14-04-03 22:19) @project(Game Features / Code)
+  use controller as in html view
+  http://docs.angularjs.org/guide/concepts#controller
+  add ctrl properties to this. instead of $scope
+ ✔ Create game service that will handle high scores, game over process, and anything else related @done (14-04-06 13:43) @project(Game Features)
+ ✔ Calculate marekt item average profit per for hover over when doing price updates when user enters new city @done (14-04-08 00:15) @project(Game Features)
+  this loop maybe getting heavy since it will be looping through all comodioties, looping through purchased commodoties, and now will filter the transaction log
+  Good place to add average calculatio is when you are adding to the log, ie when sellilng an item. Do the calc once and update the commodity with avg price instead of doing it on each city change for all items everytime
+ ✔ Add code complexity and dev dependency badges @done (14-04-02 23:59) @project(Game Features)
+ ✔ Setup Google Analytics account @done (14-04-03 22:25) @project(Game Features)
  ✔ Remove unused bower components @done (14-04-02 02:15) @project(Code)
  ✔ Fix grunt dist task to output all files needed and minified, esp bower js/css @done (14-04-02 02:00) @project(Code)
  ✔ Make site more responsive at lower resolutions @done (14-04-02 00:31) @project(Code)
