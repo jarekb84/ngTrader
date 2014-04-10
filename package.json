@@ -1,6 +1,6 @@
 {
   "name": "ngtrader",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",

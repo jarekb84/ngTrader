@@ -10,6 +10,9 @@ Simple trading game built in angular. Start with $100 and see how rich you can g
 Current backlog can be found [here](todo.todo). Uses SublimeText [PlainTasks](https://sublime.wbond.net/packages/PlainTasks) plugin.
 
 ## Changelog
+**v0.5.3 released 2014-04-09**
+* Forgot to update version bump in dist nav header.
+
 **[v0.5.2 released 2014-04-09](https://github.com/jarekb84/ngTrader/releases/tag/v0.5.2)**
 * Second and succesful attempt at resolving angular minification issues
     - Turns out grunt-ngmin does not support google recomended style of defining controllers, services, directives ect...
