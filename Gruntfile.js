@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-  var pkg = require('./package.json');  
+  var pkg = require('./package.json');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -386,7 +386,7 @@ module.exports = function(grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngmin',
+    //'ngmin',
     'copy:dist',
     'cdnify',
     'cssmin',

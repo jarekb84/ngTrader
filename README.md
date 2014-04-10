@@ -10,6 +10,14 @@ Simple trading game built in angular. Start with $100 and see how rich you can g
 Current backlog can be found [here](todo.todo). Uses SublimeText [PlainTasks](https://sublime.wbond.net/packages/PlainTasks) plugin.
 
 ## Changelog
+**[v0.5.2 released 2014-04-09](https://github.com/jarekb84/ngTrader/releases/tag/v0.5.2)**
+* Second and succesful attempt at resolving angular minification issues
+    - Turns out grunt-ngmin does not support google recomended style of defining controllers, services, directives ect...
+    - Had to manually inject dependicies via array of strings into $inject
+
+**v0.5.1 released 2014-04-09**
+* First attempt at fixing angular minification issue
+
 **[v0.5.0 released 2014-04-09](https://github.com/jarekb84/ngTrader/releases/tag/v0.5.0)**
 * Cities can now specialize in an item for a single playthough, increasing the possible price range
     - City navigation tabs show what their specialty below the city name

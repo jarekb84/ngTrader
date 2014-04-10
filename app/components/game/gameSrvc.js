@@ -29,4 +29,6 @@ ngTrader.game.gameSrvc.prototype.gameOver = function() {
   this.lastDay = false;
 };
 
+ngTrader.game.gameSrvc['$inject'] = ['highScoreSrvc', 'accountSrvc', 'commoditySrvc'];
+
 ngTrader.game.service('gameSrvc', ngTrader.game.gameSrvc);

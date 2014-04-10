@@ -23,7 +23,7 @@
   <!-- endbuild -->
 </head>
 
-<body ng-app="ngTrader">
+<body ng-app="ngTrader.application.module">
   <!--[if lt IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -64,13 +64,14 @@
         <script>
           //goog.require("ngTrader.application.module");
         </script>            
+        <script src="components/commodity/commodity.js"></script>
+        <script src="components/commodity/commoditySrvc.js"></script>        
         <script src="components/account/account.js"></script>
         <script src="components/account/accountSrvc.js"></script>
         <script src="components/city/city.js"></script>
         <script src="components/city/citySrvc.js"></script>
         <script src="components/common/common.js"></script>
-        <script src="components/commodity/commodity.js"></script>
-        <script src="components/commodity/commoditySrvc.js"></script>        
+        
         <script src="components/common/toDollarDrtv.js"></script>
         <script src="components/common/toDollarFltr.js"></script>
         <script src="components/common/autoActiveDrtv.js"></script>                

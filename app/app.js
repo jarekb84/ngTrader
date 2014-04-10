@@ -8,7 +8,7 @@ goog.require('ngTrader.highScore');
 
 goog.provide('ngTrader.application.module');
 
-ngTrader.application.module = angular.module('ngTrader', [
+ngTrader.application.module = angular.module('ngTrader.application.module', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -23,29 +23,30 @@ ngTrader.application.module = angular.module('ngTrader', [
   ngTrader.highScore.name
 ]);
 
-ngTrader.application.module.config(function($routeProvider, $angularCacheFactoryProvider) {
-  $routeProvider
-    .when('/', {
-      templateUrl: 'components/game/game.tmpl.html',
-      controller: 'gameCtrl'
-    })
-    .when('/game', {
-      templateUrl: 'components/game/game.tmpl.html',
-      controller: 'gameCtrl'
-    })
-    .when('/nav', {
-      templateUrl: 'components/nav/nav.tmpl.html',
-      controller: 'navCtrl'
-    })
-    .when('/highScores', {
-      templateUrl: 'components/highScore/highScore.tmpl.html',
-      controller: 'highScoreCtrl'
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
+ngTrader.application.module.config(['$routeProvider', '$angularCacheFactoryProvider',
+  function($routeProvider, $angularCacheFactoryProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'components/game/game.tmpl.html',
+        controller: 'gameCtrl'
+      })
+      .when('/game', {
+        templateUrl: 'components/game/game.tmpl.html',
+        controller: 'gameCtrl'
+      })
+      .when('/nav', {
+        templateUrl: 'components/nav/nav.tmpl.html',
+        controller: 'navCtrl'
+      })
+      .when('/highScores', {
+        templateUrl: 'components/highScore/highScore.tmpl.html',
+        controller: 'highScoreCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
 
-  $angularCacheFactoryProvider.setCacheDefaults({
-    storageMode: 'localStorage'
-  });
-});
+    $angularCacheFactoryProvider.setCacheDefaults({
+      storageMode: 'localStorage'
+    });
+  }]);

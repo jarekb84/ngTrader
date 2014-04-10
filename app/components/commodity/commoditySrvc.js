@@ -66,12 +66,12 @@ ngTrader.commodity.commoditySrvc.prototype.setCitySpecialty = function() {
     availableCommodities = self.commodities.slice();
 
   self.citySrvc_.cities.forEach(function(city) {
-    var index = Math.floor(Math.random()*availableCommodities.length),
+    var index = Math.floor(Math.random() * availableCommodities.length),
       item = availableCommodities[index];
-    
+
     city.specialtyItem = item;
-    
-    availableCommodities.splice(index,1);
+
+    availableCommodities.splice(index, 1);
   });
 };
 
@@ -90,17 +90,17 @@ ngTrader.commodity.commoditySrvc.prototype.updatePrices = function() {
 
   this.commodities.forEach(function(item) {
     item.priceHigh = false;
-    item.dailySpecial= false;
+    item.dailySpecial = false;
     item.citySpecialty = false;
     item.priceChanged = true;
     priceRange = self.priceModification.normalRange;
 
     if (item.name === dailySpecialItem.name) {
       priceRange += self.priceModification.specialRange;
-      item.dailySpecial= true;
+      item.dailySpecial = true;
     }
 
-    if(item.name === self.citySrvc_.currentCity.specialtyItem.name){
+    if (item.name === self.citySrvc_.currentCity.specialtyItem.name) {
       priceRange += self.priceModification.citySpecialtyRange;
       item.citySpecialty = true;
     }
@@ -174,5 +174,7 @@ ngTrader.commodity.commoditySrvc.prototype.sellCommodity = function(item) {
   }
   this.updateMaxQuantityPurchasable();
 };
+
+ngTrader.commodity.commoditySrvc['$inject'] = ['accountSrvc', 'citySrvc', '$filter'];
 
 ngTrader.commodity.service('commoditySrvc', ngTrader.commodity.commoditySrvc);

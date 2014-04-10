@@ -49,11 +49,13 @@ ngTrader.game.gameCtrl.prototype.isCurrentCity = function(city) {
 ngTrader.game.gameCtrl.prototype.getExpectedProfit = function(item) {
   var expectedProfit = 0;
 
-  if(item.averageSellPrice){
-    expectedProfit = ((item.averageSellPrice - item.currentPrice)*item.maxQuantityPurchasable)/100;
+  if (item.averageSellPrice) {
+    expectedProfit = ((item.averageSellPrice - item.currentPrice) * item.maxQuantityPurchasable) / 100;
   }
 
   return expectedProfit;
 };
+
+ngTrader.game.gameCtrl['$inject'] = ['commoditySrvc', 'citySrvc', 'accountSrvc', 'highScoreSrvc', 'gameSrvc'];
 
 ngTrader.game.controller('gameCtrl', ngTrader.game.gameCtrl);
