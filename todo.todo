@@ -1,24 +1,15 @@
 Bugs:
-  ✔ Hitting score reset triggers city price update @done (14-04-10 20:18)
 Game Features:  
  ☐ Add better end game notification
-   ✔ When last day, replace city nav with "Submit Score" button @done (14-04-10 20:19)
    ☐ Clicking this opens modal with current game score, local high scores, global high scores
    ☐ Option to start new game 
      ☐ Allow user to select number of days, 30/60/90
- ✔ HighScore updates @done (14-04-10 23:49)
-   ✔ add date @done (14-04-10 23:49)
-   ✔ add rank @done (14-04-10 23:49)
- ✔ Cleanup mobile ui @done (14-04-10 23:13)
-   ✔ sell price button text too long, causes shifting on small screens @done (14-04-10 22:39)
-   ✔ figure out way to have buy/sell buttons take up less space @done (14-04-10 22:39)
-   ✔ tooltip issue on buy button in mobile, pops up after action completes and button hides @done (14-04-10 22:45)
-   ✔ Make Days left and cash font smaller to fit on one line @done (14-04-10 22:39)
-   ✔ Hide networth on mobile @done (14-04-10 22:39)
-   ✔ Fix mobile menu button, broken @done (14-04-10 23:12)
+ ☐ UI updates
+   ✔ highscores table on mobile should be 12 column @done (14-04-11 07:50)
+   ☐ tooltip on buy button still broken, ie appears after button is hidden
+   ☐ Remove jquery dependancy needed for navbar collapse
+     http://stackoverflow.com/questions/16268606/responsive-dropdown-navbar-with-angular-ui-bootstrap-done-in-the-correct-angula
  ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction    
- ✔ Hide transaction columns as avaialbe screenspace decrease @done (14-04-10 23:37)
-   Count, Profit Each, and Proift total are not really needed 
  ☐ Add smoother transitions when elements appear/dissapear on screen    
  ☐ Add tutorial and instructions
    use hover over popups that explain the game in a quick 30sec tutorial
@@ -44,10 +35,24 @@ Code:
  ☐ Start looking at perfomance turning plugins like batarang and chrome dev tools to see where bottle necks are
  ☐ Set up travis-CI builds
  ☐ Create grunt task to hanlde pushes of dist tree to git hub pages
- ✔ Clean up sass file @done (14-04-10 23:37)
  ☐ DevDependencies are out of date
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Hitting score reset triggers city price update @done (14-04-10 20:18) @project(Bugs)
+ ✔ When last day, replace city nav with "Submit Score" button @done (14-04-10 20:19) @project(Game Features)
+ ✔ HighScore updates @done (14-04-10 23:49) @project(Game Features)
+ ✔ add date @done (14-04-10 23:49) @project(Game Features)
+ ✔ add rank @done (14-04-10 23:49) @project(Game Features)
+ ✔ Cleanup mobile ui @done (14-04-10 23:13) @project(Game Features)
+ ✔ sell price button text too long, causes shifting on small screens @done (14-04-10 22:39) @project(Game Features)
+ ✔ figure out way to have buy/sell buttons take up less space @done (14-04-10 22:39) @project(Game Features)
+ ✔ tooltip issue on buy button in mobile, pops up after action completes and button hides @done (14-04-10 22:45) @project(Game Features)
+ ✔ Make Days left and cash font smaller to fit on one line @done (14-04-10 22:39) @project(Game Features)
+ ✔ Hide networth on mobile @done (14-04-10 22:39) @project(Game Features)
+ ✔ Fix mobile menu button, broken @done (14-04-10 23:12) @project(Game Features)
+ ✔ Hide transaction columns as avaialbe screenspace decrease @done (14-04-10 23:37) @project(Game Features)
+  Count, Profit Each, and Proift total are not really needed 
+ ✔ Clean up sass file @done (14-04-10 23:37) @project(Game Features)
  ✔ High score reset not working during game play, only updates after refresh @done (14-04-09 00:18) @project(Bugs)
  ✔ At start of each game, have each city randomly select a commodity that it will specialize in, this will affect the range by an extra 10% @done (14-04-08 22:05)
   this will add to the special item of the day if it is the same item as the citities speciality
