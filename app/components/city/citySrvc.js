@@ -7,7 +7,7 @@ ngTrader.city.citySrvc = function() {
   }, {
     name: 'New York'
   }, {
-    name: 'Los Angeles'
+    name: 'Huston'
   }, {
     name: 'Denver'
   }, {

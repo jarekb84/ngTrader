@@ -1,19 +1,28 @@
 Bugs:
-  ☐ Hitting score reset triggers city price update
-
-Game Features:
-☐ Add better end game notification
-  ☐ When last day, replace city nav with "Submit Score" button
-    ☐ Clicking this opens modal with current game score, local high scores, global high scores
-    ☐ Option to start new game
-      ☐ Allow user to select number of days, 30/60/90
+  ✔ Hitting score reset triggers city price update @done (14-04-10 20:18)
+Game Features:  
+ ☐ Add better end game notification
+   ✔ When last day, replace city nav with "Submit Score" button @done (14-04-10 20:19)
+   ☐ Clicking this opens modal with current game score, local high scores, global high scores
+   ☐ Option to start new game 
+     ☐ Allow user to select number of days, 30/60/90
+ ✔ HighScore updates @done (14-04-10 23:49)
+   ✔ add date @done (14-04-10 23:49)
+   ✔ add rank @done (14-04-10 23:49)
+ ✔ Cleanup mobile ui @done (14-04-10 23:13)
+   ✔ sell price button text too long, causes shifting on small screens @done (14-04-10 22:39)
+   ✔ figure out way to have buy/sell buttons take up less space @done (14-04-10 22:39)
+   ✔ tooltip issue on buy button in mobile, pops up after action completes and button hides @done (14-04-10 22:45)
+   ✔ Make Days left and cash font smaller to fit on one line @done (14-04-10 22:39)
+   ✔ Hide networth on mobile @done (14-04-10 22:39)
+   ✔ Fix mobile menu button, broken @done (14-04-10 23:12)
+ ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction    
+ ✔ Hide transaction columns as avaialbe screenspace decrease @done (14-04-10 23:37)
+   Count, Profit Each, and Proift total are not really needed 
+ ☐ Add smoother transitions when elements appear/dissapear on screen    
  ☐ Add tutorial and instructions
    use hover over popups that explain the game in a quick 30sec tutorial
-   have more in depth info in a info/doc section
- ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction
- ☐ Hide transaction columns as avaialbe screenspace decrease
-   Count, Profit Each, and Proift total are not really needed
- ☐ Add dates to high score log
+   have more in depth info in a info/doc section 
  ☐ Add restart button
    since you can navigate back and forth between several views now, the state is kept
    restarting game may not be too intuative.
@@ -30,13 +39,12 @@ Code:
  ☐ move build system from grunt to gulp
  ☐ when making yeoman genrator add keywords prop to package.json
    example https://github.com/a1ee9b/generator-ghost-h5bp/blob/master/package.json
- ☐ Add smoother transitions when elements appear/dissapear on screen 
  ☐ Add unit tests for business logic
  ☐ Add grunt task to remove instances of console.log from all js
  ☐ Start looking at perfomance turning plugins like batarang and chrome dev tools to see where bottle necks are
  ☐ Set up travis-CI builds
  ☐ Create grunt task to hanlde pushes of dist tree to git hub pages
- ☐ Clean up sass file
+ ✔ Clean up sass file @done (14-04-10 23:37)
  ☐ DevDependencies are out of date
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

@@ -8,7 +8,7 @@ goog.require('ngTrader.highScore');
 
 goog.provide('ngTrader.application.module');
 
-ngTrader.application.module = angular.module('ngTrader.application.module', [
+ngTrader.application.module = angular.module('ngTrader', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

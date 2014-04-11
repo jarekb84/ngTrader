@@ -1,144 +1,106 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-
-@import 'bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
-
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+$icon-font-path:"/bower_components/sass-bootstrap/fonts/";
+ @import'bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+ .browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
-
-/* Space out content a bit */
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+.container {
+  @media screen and (max-width: 400px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
-
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
+.row {
+  @media screen and (max-width: 400px) {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
 }
-
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+nav {
+  .githubFork {
+    @media screen and (min-width: $screen-sm) {
+      float: right;
+    }
+  }
+  iframe {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* can't target contents of iframe to float them right */
+    margin-right: -75px;
+  }
 }
-
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+.cityList li {
+  @media screen and (max-width: 550px) {
+    width: 32%;
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 1200px;
-    }
-
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-}
-
-.fa-arrow-circle-up {
-    color: red;
-}
-
-.fa-arrow-circle-down {
-    color: green;
-}
-
-.transactions {
-    ul {
-        padding-left: 0px;
-
-        li {
-            list-style: none;    
-            padding: 5px;
-            margin-bottom: 2px;
-        }        
-    }
-
-    table {
-      max-height: 650px;
-      overflow-y: scroll;
-    }
+  }
 }
 .accountInfo {
-    display: block;
-    padding: 12px 15px;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+  display: block;
+  padding: 12px 15px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
-
 #marketTable {
-    tbody tr {
-        height: 60px;
+  tbody tr {
+    height: 45px;
+  }
+  td {
+    vertical-align: middle;
+  }
+  .dailySpecial {
+    font-weight: bold;
+  }
+  .citySpecialty {
+    font-size: .7em;
+    text-align: center;
+  }
+  .itemNameColumn {
+    width: 125px;
+    @media screen and (max-width: $screen-xs) {
+      width: 33%;
     }
-    td {
-        vertical-align: middle;    
+    .fa-arrow-circle-up {
+      color: red;
     }
+    .fa-arrow-circle-down {
+      color: green;
+    }
+    .itemName {
+      @media screen and (max-width: $screen-xs) {
+        font-size: 90%;
+      }
+    }
+  }
+  .itemPriceColumn {
+    width: 100px;
+    @media screen and (max-width: $screen-xs) {
+      width: 23%;
+    }
+  }
+  .purchasePrice {
+    font-size: 75%;
+  }
 }
-
-nav iframe {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  //can't target contents of iframe to float them right
-  margin-right: -75px;
-}
-.dailySpecial{
-  font-weight: bold;
-}
-
-.citySpecialty {
-  font-size: .7em;
-  text-align: center;
+.transactions {
+  ul {
+    padding-left: 0px;
+    li {
+      list-style: none;
+      padding: 5px;
+      margin-bottom: 2px;
+    }
+  }
+  table {
+    max-height: 650px;
+    overflow-y: scroll;
+  }
 }

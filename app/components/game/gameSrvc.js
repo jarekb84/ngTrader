@@ -19,7 +19,8 @@ ngTrader.game.gameSrvc.prototype.reduceDaysLeft = function() {
 
 ngTrader.game.gameSrvc.prototype.gameOver = function() {
   this.highScoreSrvc_.add({
-    score: this.accountSrvc_.currentCash
+    score: this.accountSrvc_.currentCash,
+    datetime: new Date().getTime()
   });
   this.accountSrvc_.reset();
   this.commoditySrvc_.resetAverageSellPrice();
