@@ -56,7 +56,11 @@
                   Buy {{ item.maxQuantityPurchasable | number }}
                 </button>
                 <span class="sellActions" ng-repeat="purchasedItem in item.purchasedItems">
-                  <button class="btn btn-danger" ng-click="game.sellItem(purchasedItem)">
+                  <button class="btn btn-danger" 
+                    ng-click="game.sellItem(purchasedItem)"
+                    tooltip-popup-delay="500" 
+                    tooltip-trigger="mouseenter"
+                    tooltip="Purchased for {{ purchasedItem.purchasePrice | toDollar }} each">
                     Sell {{purchasedItem.quantity | number}}
                     <span class="purchasePrice">({{ purchasedItem.purchasePrice | toDollar }})</span>
                   </button>                  
