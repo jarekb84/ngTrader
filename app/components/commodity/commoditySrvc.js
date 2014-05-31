@@ -2,12 +2,12 @@
 goog.provide('ngTrader.commodity.commoditySrvc');
 
 ngTrader.commodity.commoditySrvc = function(accountSrvc, citySrvc, $filter) {
-  this.accountSrvc_ = accountSrvc;
-  this.filter_ = $filter;
-  this.citySrvc_ = citySrvc;
+  this.accountSrvc = accountSrvc;
+  this.$filter = $filter;
+  this.citySrvc = citySrvc;
   this.commodities = [{
     name: 'Absinthe',
-    basePrice: 51100,
+    basePrice: 51200,
     purchasedItems: []
   }, {
     name: 'Cognac',
@@ -57,7 +57,7 @@ ngTrader.commodity.commoditySrvc = function(accountSrvc, citySrvc, $filter) {
 ngTrader.commodity.commoditySrvc.prototype.updateMaxQuantityPurchasable = function() {
   var self = this;
   this.commodities.forEach(function(item) {
-    item.maxQuantityPurchasable = Math.floor(self.accountSrvc_.currentCash / item.currentPrice);
+    item.maxQuantityPurchasable = Math.floor(self.accountSrvc.currentCash / item.currentPrice);
   });
 };
 
@@ -65,7 +65,7 @@ ngTrader.commodity.commoditySrvc.prototype.setCitySpecialty = function() {
   var self = this,
     availableCommodities = self.commodities.slice();
 
-  self.citySrvc_.cities.forEach(function(city) {
+  self.citySrvc.cities.forEach(function(city) {
     var index = Math.floor(Math.random() * availableCommodities.length),
       item = availableCommodities[index];
 
@@ -75,18 +75,12 @@ ngTrader.commodity.commoditySrvc.prototype.setCitySpecialty = function() {
   });
 };
 
-ngTrader.commodity.commoditySrvc.prototype.resetAverageSellPrice = function() {
-  this.commodities.forEach(function(item) {
-    item.averageSellPrice = 0;
-  });
-};
-
 ngTrader.commodity.commoditySrvc.prototype.updatePrices = function() {
   var dailySpecialItem = this.commodities[Math.floor(Math.random() * this.commodities.length)],
     self = this,
     priceRange, priceOffset;
 
-  this.accountSrvc_.netWorth = this.accountSrvc_.currentCash;
+  this.accountSrvc.netWorth = this.accountSrvc.currentCash;
 
   this.commodities.forEach(function(item) {
     item.priceHigh = false;
@@ -100,7 +94,7 @@ ngTrader.commodity.commoditySrvc.prototype.updatePrices = function() {
       item.dailySpecial = true;
     }
 
-    if (item.name === self.citySrvc_.currentCity.specialtyItem.name) {
+    if (item.name === self.citySrvc.currentCity.specialtyItem.name) {
       priceRange += self.priceModification.citySpecialtyRange;
       item.citySpecialty = true;
     }
@@ -116,20 +110,20 @@ ngTrader.commodity.commoditySrvc.prototype.updatePrices = function() {
     }
 
     item.currentPrice = item.basePrice * (priceOffset / 100) + item.basePrice;
-    item.maxQuantityPurchasable = Math.floor(self.accountSrvc_.currentCash / item.currentPrice);
+    item.maxQuantityPurchasable = Math.floor(self.accountSrvc.currentCash / item.currentPrice);
 
     item.purchasedItems.forEach(function(purchasedItem) {
-      self.accountSrvc_.netWorth += purchasedItem.quantity * item.currentPrice;
+      self.accountSrvc.netWorth += purchasedItem.quantity * item.currentPrice;
     });
   });
 };
 
 ngTrader.commodity.commoditySrvc.prototype.buyCommodity = function(item, quantity) {
-  var commodity = this.filter_('filter')(this.commodities, item.name, true)[0],
+  var commodity = this.$filter('filter')(this.commodities, item.name, true)[0],
     totalCost = item.currentPrice * quantity;
 
-  if (this.accountSrvc_.currentCash >= totalCost) {
-    this.accountSrvc_.currentCash -= totalCost;
+  if (this.accountSrvc.currentCash >= totalCost) {
+    this.accountSrvc.currentCash -= totalCost;
 
     var purchasedItem = {
       name: item.name,
@@ -144,7 +138,7 @@ ngTrader.commodity.commoditySrvc.prototype.buyCommodity = function(item, quantit
 };
 
 ngTrader.commodity.commoditySrvc.prototype.sellCommodity = function(item) {
-  var commodity = this.filter_('filter')(this.commodities, item.name, true)[0],
+  var commodity = this.$filter('filter')(this.commodities, item.name, true)[0],
     transaction, purchasedItem, priorTransactions;
 
   if (commodity) {
@@ -157,15 +151,15 @@ ngTrader.commodity.commoditySrvc.prototype.sellCommodity = function(item) {
       quantity: item.quantity
     };
 
-    purchasedItem = this.filter_('filter')(this.commodities, item.name, true)[0],
+    purchasedItem = this.$filter('filter')(this.commodities, item.name, true)[0],
 
     //remove purchased item
     commodity.purchasedItems.splice(commodity.purchasedItems.indexOf(item), 1);
-    this.accountSrvc_.transactions.push(transaction);
-    this.accountSrvc_.currentCash += commodity.currentPrice * item.quantity;
+    this.accountSrvc.transactions.push(transaction);
+    this.accountSrvc.currentCash += commodity.currentPrice * item.quantity;
 
     //get average sold price
-    priorTransactions = this.filter_('filter')(this.accountSrvc_.transactions, item.name, true);
+    priorTransactions = this.$filter('filter')(this.accountSrvc.transactions, item.name, true);
 
     commodity.averageSellPrice = priorTransactions.reduce(function(prior, current) {
       return prior + current.sellPrice;
@@ -173,6 +167,17 @@ ngTrader.commodity.commoditySrvc.prototype.sellCommodity = function(item) {
 
   }
   this.updateMaxQuantityPurchasable();
+};
+
+ngTrader.commodity.commoditySrvc.prototype.reset = function() {
+  this.commodities.forEach(function(item) {
+    item.averageSellPrice = 0;
+    item.purchasedItems = [];
+  });
+
+  this.updatePrices();
+  this.updateMaxQuantityPurchasable();
+  this.setCitySpecialty();
 };
 
 ngTrader.commodity.commoditySrvc['$inject'] = ['accountSrvc', 'citySrvc', '$filter'];

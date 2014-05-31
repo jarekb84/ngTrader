@@ -1,0 +1,84 @@
+Page load modal
+    State: "Hey looks like this is your first time here, would you like a quick tutorial?"
+    Provide tutorial button
+    Provide start game button
+    
+Each step has a next button and an end tutorial button. Replay tutorial link should be part of the main nav.
+    
+Step
+    Title: Intro
+    highlight: none
+    target: none
+    text: "Buy an item from one city when the price is low, switch cities and sell it if it is high. See how much money you can make in 30 days"
+    
+Step
+    Title: Days Left
+    highlight: Days/cash header
+    Target: DaysLeft
+    Text: "Changing cities takes 1 day, game ends after 30 days"    
+
+Step
+    Title: Cash
+    highlight: Days/cash header
+    Target: cash amount
+    Text: "Money available to purchase items in a city. When game ends, your score is the available cash. Inventory does not count, so make sure to sell everthing on the last day"        
+
+Step
+    Title: Price
+    highlight: first market item row with low price below $100
+    Target: current market price
+    Text: "Each day the price of an item ranges from -20% to +20% of its base price."        
+    
+Step
+    Title: Item row: Buy
+    highlight: first market item row with low price below $100
+    Target: buy button
+    Text: "Buy button shows you how many units of an item you can afford to buy. Click it to continue"
+
+Step
+    Title: Item row: Sell
+    highlight: first market item row with low price below $100
+    Target: buy button
+    Text: "This shows how many units you purchased and at what price. Handy remined when you switch cities."    
+    
+Step
+    Title: Up/Down arrows
+    highlight: first market item row with low price below $100
+    Target: price indicator
+    Text: "This gives you a hint about if it's a good time to buy or sell. Red up arrow means the price is high and a good time to sell. Green down arrow means price is low and a good time to buy. Black bar means the price is at base, probably not a good time to buy."    
+    
+Step
+    Title: Daily Special
+    highlight: item row that has daily special icon
+    Target: daily special icon
+    Text: "Each day a city has a random daily special on an item. This adds an additional +-20% to the base price range."    
+    
+Step
+    Title: City Specialty 
+    highlight: item row that has city specialty icon
+    Target: city specialty icon
+    Text: "Each playthrough each city is assigned an item it specializes in. This adds an additional +-10% to the base price range. The city specialty can also be the daily special making the total price range between -50% to + 50%."        
+    
+Step
+    Title: City navigation
+    highlight: City list header
+    Target: current city
+    Text: "After you buy an item, go to a different city to try and sell it for a profit"
+    
+Step
+    Title: City navigation
+    highlight: City list header
+    Target: current cities specialy item text
+    Text: "Below the city name is a hint for what item it specializes in for this playthrough"
+
+Step
+    Title: Transactions
+    highlight: Transactions table
+    Target: transactions table
+    Text: "This shows a hisotry of all items you've sold. When you hover over the items in the market table, the transaction history is filtered to just show that item. This helps to determine historical high's and lows"    
+    
+Step
+    Title: End tutorial
+    highlight: none
+    Target: none
+    Text: "That's it, you're ready to play the game. You can replay the tutorial from the main navigtion or go to the instructions link for more detailed info"    

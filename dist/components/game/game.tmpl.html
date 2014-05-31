@@ -1,82 +1,83 @@
 <div ng-controller="gameCtrl as game">
-  <div ng-show="game.gameSrvc_.lastDay" class="alert alert-danger">Last day! Sell off all items!</div>
-  <div class="row">
-    <div class="col-md-3 hidden-xs hidden-sm">
-      <div class="accountInfo bg-info">                
-        <strong>Net Worth:</strong> {{game.accountSrvc_.netWorth | toDollar}}
+  <div ng-show="game.gameSrvc.lastDay" class="alert alert-danger">Last day! Sell off all items!</div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="accountInfo bg-info">
+          <span class="netWorth"><strong>Net Worth:</strong> {{game.accountSrvc.netWorth | toDollar}}</span>
+          <button class="btn btn-primary btn-xs pull-right menuButton" ng-click="game.openMenu()"><i class="fa fa-cog"></i> Menu</button>
+        </div>
       </div>
-    </div>
-    <div class="col-md-9 col-xs-12">      
-      <button ng-show="game.gameSrvc_.lastDay" class="btn btn-primary pull-right" ng-click="game.submitScore()">Submit Score</button>
-      <ul ng-hide="game.gameSrvc_.lastDay" class="nav nav-pills pull-right cityList">        
-        <li ng-repeat="city in game.citySrvc_.cities | orderBy:'name'" ng-class="game.isCurrentCity(city) ? 'active' : ''">
+      <div class="col-md-7 col-xs-12">
+      <button ng-show="game.gameSrvc.lastDay" class="btn btn-primary pull-right" ng-click="game.submitScore()">Submit Score</button>
+        <ul ng-hide="game.gameSrvc.lastDay" class="nav nav-pills pull-right cityList">
+          <li ng-repeat="city in game.citySrvc.cities | orderBy:'name'" ng-class="game.isCurrentCity(city) ? 'active' : ''">
           <a ng-if="game.isCurrentCity(city)">{{city.name}} <div class="citySpecialty">{{city.specialtyItem.name}}</div></a>
           <a ng-if="!game.isCurrentCity(city)" href="#" ng-click="game.goToCity(city)">{{city.name}}<div class="citySpecialty">{{city.specialtyItem.name}}</div></a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5">
       <h4>
-        <strong>Days Left:</strong> {{game.gameSrvc_.daysLeft}}
-        <span class="pull-right">
-          <strong>Cash:</strong> {{game.accountSrvc_.currentCash | toDollar}}
-        </span>
+      <span class="daysLeft"><strong>Days Left:</strong> {{game.gameSrvc.daysLeft}}</span>
+      <span class="pull-right currentCash">
+      <strong>Cash:</strong> {{game.accountSrvc.currentCash | toDollar}}
+      </span>
       </h4>
-      <table id="marketTable" class="table table-hover table-condensed">
-        <thead>
+        <table id="marketTable" class="table table-hover table-condensed">
+          <thead>
           <th class="itemNameColumn">Name</th>
           <th class="itemPriceColumn">Price</th>
           <th class="actionsColumn">Action</th>
         </thead>
-        <tbody>
-          <tr ng-repeat="item in game.commoditySrvc_.commodities | orderBy: 'name'" 
-            ng-mouseover="game.setMarketHoverItem(item)" 
+          <tbody>
+            <tr ng-repeat="item in game.commoditySrvc.commodities | orderBy: 'name'"
+            ng-mouseover="game.setMarketHoverItem(item)"
             ng-mouseleave="game.resetMarketHoverItem()">
-            <td class="itemNameColumn">
-              <i class="fa fa-arrow-circle-down" ng-if="item.priceChanged && !item.priceHigh" tooltip="Price is lower than normal"></i> 
-              <i class="fa fa-arrow-circle-up" ng-if="item.priceChanged && item.priceHigh"tooltip="Price is higher than normal"></i> 
-              <i class="fa fa-minus-circle" ng-if="!item.priceChanged" tooltip="Price is equal to norm"></i> 
+              <td class="itemNameColumn">
+              <i class="fa fa-arrow-circle-down" ng-if="item.priceChanged && !item.priceHigh" tooltip="Price is lower than normal"></i>
+              <i class="fa fa-arrow-circle-up" ng-if="item.priceChanged && item.priceHigh" tooltip="Price is higher than normal"></i>
+              <i class="fa fa-minus-circle" ng-if="!item.priceChanged" tooltip="Price is equal to norm"></i>
               <span class="itemName">{{ item.name }}</span>
               <span class="pull-right">
-                <i class="fa fa-bolt" ng-if="item.dailySpecial" tooltip="Daily Special"></i>  
-                <i class="fa fa-trophy" ng-if="item.citySpecialty" tooltip="City Specialty"></i>              
+              <i class="fa fa-bolt" ng-if="item.dailySpecial" tooltip="Daily Special"></i>
+              <i class="fa fa-trophy" ng-if="item.citySpecialty" tooltip="City Specialty"></i>
               </span>
             </td>
-            <td class="itemPriceColumn">{{item.currentPrice | toDollar}}</td>
+            <td class="itemPriceColumn itemCurrentPrice">{{item.currentPrice | toDollar}}</td>
             <td class="actionsColumn">
-              <div>                
-                <button class="btn btn-success buyAction" 
-                  ng-click="game.buyItem(item, item.maxQuantityPurchasable)" 
-                  ng-hide="item.maxQuantityPurchasable < 1" 
-                  tooltip-popup-delay="500" 
+              <div>
+                <button class="btn btn-success buyAction"
+                  ng-click="game.buyItem(item, item.maxQuantityPurchasable)"
+                  ng-if="item.maxQuantityPurchasable > 0"
+                  tooltip-popup-delay="500"
                   tooltip-trigger="mouseenter"
-                  tooltip="Expected profit: {{game.getExpectedProfit(item) | currency}}">
+                  tooltip="Potential profit: {{game.getPotentialProfit(item) | toDollar}}">
                   Buy {{ item.maxQuantityPurchasable | number }}
                 </button>
                 <span class="sellActions" ng-repeat="purchasedItem in item.purchasedItems">
-                  <button class="btn btn-danger" 
+                  <button class="btn btn-danger"
                     ng-click="game.sellItem(purchasedItem)"
-                    tooltip-popup-delay="500" 
+                    tooltip-popup-delay="500"
                     tooltip-trigger="mouseenter"
                     tooltip="Purchased for {{ purchasedItem.purchasePrice | toDollar }} each">
                     Sell {{purchasedItem.quantity | number}}
                     <span class="purchasePrice">({{ purchasedItem.purchasePrice | toDollar }})</span>
-                  </button>                  
-                </span>              
+                  </button>
+                </span>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7">
-      <div class="transactions">
+      <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7">
+        <div class="transactions">
         <h4>Transactions</h4>
-        <table class="table table-condensed table-hover">
-          <thead>
-            <tr>
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr>
               <th class="">#</th>
               <th>Name</th>
               <th>Buy @</th>
@@ -85,22 +86,22 @@
               <th class="hidden-xs">Profit Total</th>
             </tr>
           </thead>
-          <tbody>
-            <tr ng-repeat="item in game.accountSrvc_.transactions | orderBy:'-profitEach' | filter:game.marketHoverItem">
+            <tbody>
+              <tr ng-repeat="item in game.accountSrvc.transactions | orderBy:'-profitEach' | filter:game.marketHoverItem">
               <td>{{item.quantity | number }}</td>
               <td>{{item.itemName}}</td>
               <td>{{item.purchasePrice | toDollar}}</td>
               <td>{{item.sellPrice | toDollar}}</td>
-              <td class="hidden-xs">
+                <td class="hidden-xs">
                 <strong>{{item.profitEach | toDollar}}</strong>
               </td>
-              <td class="hidden-xs">
+                <td class="hidden-xs">
                 <strong>{{item.profitTotal | toDollar}}</strong>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>      
+      </div>
     </div>
   </div>
 </div>

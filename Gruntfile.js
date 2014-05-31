@@ -153,7 +153,7 @@ module.exports = function(grunt) {
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
+        cssDir: '<%= yeoman.app %>/styles',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
@@ -341,14 +341,13 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [{
-            pattern: /<!-- package.version:start -->v(.*?)<!-- package.version:end -->/ig ,
-            replacement: '<!-- package.version:start -->v'+ pkg.version +'<!-- package.version:end -->'
+            pattern: /<!-- package.version:start -->v(.*?)<!-- package.version:end -->/ig,
+            replacement: '<!-- package.version:start -->v' + pkg.version + '<!-- package.version:end -->'
           }]
         }
       }
     }
   });
-
 
   grunt.registerTask('serve', function(target) {
     if (target === 'dist') {

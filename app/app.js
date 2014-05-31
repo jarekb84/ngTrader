@@ -5,6 +5,7 @@ goog.require('ngTrader.commodity');
 goog.require('ngTrader.common');
 goog.require('ngTrader.game');
 goog.require('ngTrader.highScore');
+goog.require('ngTrader.tutorial');
 
 goog.provide('ngTrader.application.module');
 
@@ -15,12 +16,15 @@ ngTrader.application.module = angular.module('ngTrader', [
   'ngRoute',
   'jmdobry.angular-cache',
   'ui.bootstrap',
+  'angular-intro',
+  'ngTable',
   ngTrader.account.name,
   ngTrader.city.name,
   ngTrader.commodity.name,
   ngTrader.common.name,
   ngTrader.game.name,
-  ngTrader.highScore.name
+  ngTrader.highScore.name,
+  ngTrader.tutorial.name
 ]);
 
 ngTrader.application.module.config(['$routeProvider', '$angularCacheFactoryProvider',
@@ -49,4 +53,5 @@ ngTrader.application.module.config(['$routeProvider', '$angularCacheFactoryProvi
     $angularCacheFactoryProvider.setCacheDefaults({
       storageMode: 'localStorage'
     });
-  }]);
+  }
+]);

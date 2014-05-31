@@ -15,7 +15,7 @@ ngTrader.city.citySrvc = function() {
   }, {
     name: 'Miami'
   }];
-  
+
   this.currentCity = null;
 };
 

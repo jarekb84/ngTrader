@@ -1,12 +1,22 @@
 'use strict';
 goog.provide('ngTrader.highScore.highScoreSrvc');
 
-ngTrader.highScore.highScoreSrvc = function highScoreSrvc($angularCacheFactory) {
-    this.cache = $angularCacheFactory('cache');
-    this.highScores = this.cache.get('highScores') || [];
-  };
+ngTrader.highScore.highScoreSrvc = function highScoreSrvc($angularCacheFactory, $filter) {
+  this.cache = $angularCacheFactory('cache');
+  this.highScores = this.cache.get('highScores') || [];
+  this.$filter = $filter;
+};
 
 ngTrader.highScore.highScoreSrvc.prototype.add = function(score) {
+  var priorNewestScore = this.$filter('filter')(this.highScores, {
+    newest: true
+  }, true)[0];
+
+  if (priorNewestScore) {
+    priorNewestScore.newest = false;
+  }
+
+  score.newest = true;
   this.highScores.push(score);
   this.cache.put('highScores', this.highScores);
 };
@@ -16,6 +26,5 @@ ngTrader.highScore.highScoreSrvc.prototype.reset = function() {
   this.highScores = [];
 };
 
-ngTrader.highScore.highScoreSrvc['$inject'] = ['$angularCacheFactory'];
-
+ngTrader.highScore.highScoreSrvc['$inject'] = ['$angularCacheFactory', '$filter'];
 ngTrader.highScore.service('highScoreSrvc', ngTrader.highScore.highScoreSrvc);

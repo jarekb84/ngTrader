@@ -1,9 +1,11 @@
 Bugs:
 Game Features:  
  ☐ Add better end game notification
-   ☐ Clicking this opens modal with current game score, local high scores, global high scores
-   ☐ Option to start new game 
-     ☐ Allow user to select number of days, 30/60/90
+   ☐ Clicking this opens modal with current game score, rank of current score, and 4 other prior highscores with +- 2 rank
+   ✔ Option to start new game @done (14-05-08 20:34)
+ ☐ Highcores
+   ☐ use ng-Table to add pagination, sorting, ect..     
+   ☐ Add method of storing ranks
  ☐ UI updates
    ✔ highscores table on mobile should be 12 column @done (14-04-11 07:50)
    ☐ tooltip on buy button still broken, ie appears after button is hidden
@@ -11,10 +13,10 @@ Game Features:
      http://stackoverflow.com/questions/16268606/responsive-dropdown-navbar-with-angular-ui-bootstrap-done-in-the-correct-angula
  ☐ if two transactions have the same purchase price, consolidate the quantity rather then adding another transaction    
  ☐ Add smoother transitions when elements appear/dissapear on screen    
- ☐ Add tutorial and instructions
+ ✔ Add tutorial and instructions @done (14-05-08 20:23)
    use hover over popups that explain the game in a quick 30sec tutorial
-   have more in depth info in a info/doc section 
- ☐ Add restart button
+   have more in depth info in a info/doc section  
+ ✔ Add restart button @done (14-05-10 12:18)
    since you can navigate back and forth between several views now, the state is kept
    restarting game may not be too intuative.
  ☐ Set max height of transactions table, overflow scroll y

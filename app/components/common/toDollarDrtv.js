@@ -1,7 +1,7 @@
 'use strict';
 goog.provide('ngTrader.common.toDollarDrtv');
 
-ngTrader.common.toDollarDrtv =  function() {
+ngTrader.common.toDollarDrtv = function() {
   return {
     restrict: 'AE',
     scope: {

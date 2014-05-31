@@ -4,9 +4,10 @@ goog.provide('ngTrader.game.gameSrvc');
 ngTrader.game.gameSrvc = function(highScoreSrvc, accountSrvc, commoditySrvc) {
   this.daysLeft = 30;
   this.lastDay = false;
-  this.highScoreSrvc_ = highScoreSrvc;
-  this.accountSrvc_ = accountSrvc;
-  this.commoditySrvc_ = commoditySrvc;
+  this.highScoreSrvc = highScoreSrvc;
+  this.accountSrvc = accountSrvc;
+  this.commoditySrvc = commoditySrvc;
+  this.initialLoad = true;
 };
 
 ngTrader.game.gameSrvc.prototype.reduceDaysLeft = function() {
@@ -17,15 +18,16 @@ ngTrader.game.gameSrvc.prototype.reduceDaysLeft = function() {
   }
 };
 
-ngTrader.game.gameSrvc.prototype.gameOver = function() {
-  this.highScoreSrvc_.add({
-    score: this.accountSrvc_.currentCash,
-    datetime: new Date().getTime()
-  });
-  this.accountSrvc_.reset();
-  this.commoditySrvc_.resetAverageSellPrice();
-  this.commoditySrvc_.updateMaxQuantityPurchasable();
-  this.commoditySrvc_.setCitySpecialty();
+ngTrader.game.gameSrvc.prototype.gameOver = function(restart) {
+  if (!restart) {
+    this.highScoreSrvc.add({
+      score: this.accountSrvc.currentCash,
+      datetime: new Date().getTime()
+    });
+  }
+
+  this.accountSrvc.reset();
+  this.commoditySrvc.reset();
   this.daysLeft = 30;
   this.lastDay = false;
 };
