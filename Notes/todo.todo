@@ -20,6 +20,7 @@ Game Features:
    since you can navigate back and forth between several views now, the state is kept
    restarting game may not be too intuative.
  ☐ Set max height of transactions table, overflow scroll y
+ ☐ Test ssh
  ☐ Add settings section to configure
    ☐ Starting Cash
    ☐ number of days
