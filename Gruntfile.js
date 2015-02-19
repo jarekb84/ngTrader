@@ -40,9 +40,9 @@ module.exports = function(grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
+      sass: {
         files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['sass', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -177,7 +177,16 @@ module.exports = function(grunt) {
         }
       }
     },
-
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          '<%= yeoman.app %>/styles/app.css': '<%= yeoman.app %>/styles/app.scss'
+        }
+      }
+    },
     // Renames files for browser caching purposes
     rev: {
       dist: {
@@ -314,13 +323,13 @@ module.exports = function(grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'sass'
       ],
       test: [
-        'compass'
+        'sass'
       ],
       dist: [
-        'compass:dist',
+        'sass',
         'imagemin',
         'svgmin'
       ]

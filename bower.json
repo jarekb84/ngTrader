@@ -8,7 +8,7 @@
     "angular-sanitize": "1.2.16",
     "angular-route": "1.2.16",
     "bootstrap-sass-official": "~3.1.1",
-    "font-awesome": "4.0.4-wip",
+    "font-awesome": "4.3.0",
     "angular-cache": "~2.3.3",
     "closure-library": "https://closure-library.googlecode.com/files/closure-library-20130212-95c19e7f0f5f.zip",
     "angular-bootstrap": "~0.10.0",

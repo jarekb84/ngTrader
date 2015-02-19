@@ -31,8 +31,8 @@
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div class="container" 
-    ng-controller="tutorialCtrl as tutorial" 
+  <div class="container"
+    ng-controller="tutorialCtrl as tutorial"
     ng-intro-options="tutorial.options" ng-intro-method="startTutorial"
     ng-intro-onexit="tutorial.endTutorial"
     ng-intro-autostart="false">
@@ -54,7 +54,7 @@
 
   ga('create', 'UA-49700515-1', 'github.com');
   ga('send', 'pageview');
-    
+
   (function()
     {
         var link = document.createElement('link');
@@ -64,7 +64,7 @@
         document.getElementsByTagName('head')[0].appendChild(link);
   }());
   </script>
-
+  <script src="bower_components/closure-library/closure/goog/base.js"></script>
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -73,9 +73,19 @@
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
+  <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
   <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
-  <script src="bower_components/closure-library/closure/goog/base.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/intro.js/intro.js"></script>
   <script src="bower_components/angular-intro.js/src/angular-intro.js"></script>
@@ -83,7 +93,7 @@
   <!-- endbower -->
   <!-- endbuild -->
 
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->  
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="components/commodity/commodity.js"></script>
   <script src="components/commodity/commoditySrvc.js"></script>
   <script src="components/account/account.js"></script>
@@ -93,10 +103,10 @@
   <script src="components/common/common.js"></script>
   <script src="components/common/toDollarDrtv.js"></script>
   <script src="components/common/toDollarFltr.js"></script>
-  <script src="components/common/autoActiveDrtv.js"></script>  
+  <script src="components/common/autoActiveDrtv.js"></script>
   <script src="components/game/game.js"></script>
   <script src="components/game/gameSrvc.js"></script>
-  <script src="components/game/gameCtrl.js"></script>  
+  <script src="components/game/gameCtrl.js"></script>
   <script src="components/game/gameModalInstanceCtrl.js"></script>
   <script src="components/highScore/highScore.js"></script>
   <script src="components/highScore/highScoreSrvc.js"></script>
@@ -105,7 +115,7 @@
   <script src="components/tutorial/tutorial.js"></script>
   <script src="components/tutorial/tutorialCtrl.js"></script>
   <script src="components/tutorial/tutorialSrvc.js"></script>
-  <script src="app.js"></script>  
+  <script src="app.js"></script>
   <!-- endbuild -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
