@@ -10,6 +10,9 @@ Simple trading game built in angular. Start with $100 and see how rich you can g
 Current backlog can be found [here](todo.todo). Uses SublimeText [PlainTasks](https://sublime.wbond.net/packages/PlainTasks) plugin.
 
 ## Changelog
+**[v0.7.1 released ???]**
+* Switched from Google Closure to RequireJS 
+
 **[v0.7.0 released 2014-05-31](https://github.com/jarekb84/ngTrader/releases/tag/v0.7.0)**
 * Added tutorial
 * Added end game screen

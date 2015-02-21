@@ -149,34 +149,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '<%= yeoman.app %>/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
-    },
     sass: {
       options: {
         sourceMap: true
@@ -304,12 +276,6 @@ module.exports = function(grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>/fonts',
           src: ['bower_components/font-awesome/fonts/*']
-        }, {
-          expand: true,
-          flatten: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: ['bower_components/closure-library/closure/goog/deps.js']
         }]
       },
       styles: {
@@ -398,7 +364,6 @@ module.exports = function(grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
-    'uglify',
     'rev',
     'usemin',
     'htmlmin'
