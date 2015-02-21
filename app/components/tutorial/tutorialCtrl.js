@@ -1,14 +1,14 @@
-'use strict';
-goog.provide('ngTrader.tutorial.tutorialCtrl');
+define(function() {
+  'use strict';
 
-ngTrader.tutorial.tutorialCtrl = function(tutorialSrvc) {
-  this.options = tutorialSrvc.options;
-};
+  /* @ngInject */
+  var tutorialCtrl = function(tutorialSrvc) {
+    this.options = tutorialSrvc.options;
+  };
 
-ngTrader.tutorial.tutorialCtrl.prototype.endTutorial = function() {
-  console.log('stuff');
-};
+  tutorialCtrl.prototype.endTutorial = function() {
+    console.log('stuff');
+  };
 
-ngTrader.tutorial.tutorialCtrl['$inject'] = ['tutorialSrvc'];
-
-ngTrader.tutorial.controller('tutorialCtrl', ngTrader.tutorial.tutorialCtrl);
+  return tutorialCtrl;
+});
