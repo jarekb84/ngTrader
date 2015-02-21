@@ -1,3 +1,9 @@
-goog.provide('ngTrader.commodity');
+define(function(require) {
+  'use strict';
 
-ngTrader.commodity = angular.module('ngTrader.commodity', []);
+  var angular = require('angular'),
+    commoditySrvc = require('commodity/commoditySrvc');
+
+  return angular.module('ngTrader.commodity', [])
+    .service('commoditySrvc', commoditySrvc);
+});

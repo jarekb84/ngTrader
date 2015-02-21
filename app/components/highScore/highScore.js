@@ -1,3 +1,11 @@
-goog.provide('ngTrader.highScore');
+define(function(require) {
+  'use strict';
 
-ngTrader.highScore = angular.module('ngTrader.highScore', []);
+  var angular = require('angular'),
+    highScoreCtrl = require('highScore/highScoreCtrl'),
+    highScoreSrvc = require('highScore/highScoreSrvc');
+
+  return angular.module('ngTrader.highScore', [])
+    .controller('highScoreCtrl', highScoreCtrl)
+    .service('highScoreSrvc', highScoreSrvc);
+});
