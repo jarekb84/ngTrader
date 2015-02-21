@@ -1,14 +1,15 @@
-'use strict';
-goog.provide('ngTrader.common.toDollarDrtv');
+define(function() {
+  'use strict';
 
-ngTrader.common.toDollarDrtv = function() {
-  return {
-    restrict: 'AE',
-    scope: {
-      cents: '='
-    },
-    template: '{{ cents/100 | currency }}'
+  var toDollarDrtv = function() {
+    return {
+      restrict: 'AE',
+      scope: {
+        cents: '='
+      },
+      template: '{{ cents/100 | currency }}'
+    };
   };
-};
 
-ngTrader.common.directive('toDollar', ngTrader.common.toDollarDrtv);
+  return toDollarDrtv;
+});

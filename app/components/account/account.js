@@ -1,3 +1,9 @@
-goog.provide('ngTrader.account');
+define(function(require) {
+  'use strict';
 
-ngTrader.account = angular.module('ngTrader.account', []);
+  var angular = require('angular'),
+    accountSrvc = require('account/accountSrvc');
+
+  return angular.module('ngTrader.account', [])
+    .service('accountSrvc', accountSrvc);
+});

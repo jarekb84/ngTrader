@@ -1,8 +1,9 @@
-'use strict';
-goog.provide('ngTrader.city.cityCtrl');
+define(function() {
+  'use strict';
 
-ngTrader.city.cityCtrl = function() {
+  var cityCtrl = function() {
 
-};
+  };
 
-ngTrader.city.controller('cityCtrl', ngTrader.city.cityCtrl);
+  return cityCtrl;
+});
