@@ -140,7 +140,7 @@ define(function() {
 
   commoditySrvc.prototype.sellCommodity = function(item) {
     var commodity = this.$filter('filter')(this.commodities, item.name, true)[0],
-      transaction, purchasedItem, priorTransactions;
+      transaction, priorTransactions;
 
     if (commodity) {
       transaction = {
@@ -151,8 +151,6 @@ define(function() {
         sellPrice: commodity.currentPrice,
         quantity: item.quantity
       };
-
-      purchasedItem = this.$filter('filter')(this.commodities, item.name, true)[0];
 
       //remove purchased item
       commodity.purchasedItems.splice(commodity.purchasedItems.indexOf(item), 1);

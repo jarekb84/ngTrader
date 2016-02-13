@@ -1,8 +1,7 @@
 define(function(require) {
   'use strict';
 
-  var angular = require('angular'),
-    accountSrvc = require('account/accountSrvc'),
+  var angular = require('angular'),    
     gameCtrl = require('game/gameCtrl'),
     gameModalInstanceCtrl = require('game/gameModalInstanceCtrl'),
     gameSrvc = require('game/gameSrvc');
