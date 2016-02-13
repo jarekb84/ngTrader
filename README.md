@@ -1,4 +1,4 @@
-[![devDependency Status](https://david-dm.org/jarekb84/ngTrader/dev-status.png)](https://david-dm.org/jarekb84/ngTrader#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jarekb84/ngTrader.png)](https://codeclimate.com/github/jarekb84/ngTrader)
+[![devDependency Status](https://david-dm.org/jarekb84/ngTrader/dev-status.png)](https://david-dm.org/jarekb84/ngTrader#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jarekb84/ngTrader.png)](https://codeclimate.com/github/jarekb84/ngTrader) [![Codacy Badge](https://api.codacy.com/project/badge/grade/6e803364ff024add98131e3c9b64acb4)](https://www.codacy.com/app/jerry-batorski/ngTrader)
 
 ngTrader
 ================
