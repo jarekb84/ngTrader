@@ -87,9 +87,7 @@ require([
   '../app'
 ], function(angular, app) {
   'use strict';
-  /* jshint ignore:start */
-  var $html = angular.element(document.getElementsByTagName('html')[0]);
-  /* jshint ignore:end */
+    
   angular.element().ready(function() {
     angular.resumeBootstrap([app.name]);
   });

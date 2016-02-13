@@ -1,16 +1,16 @@
 define(function(require) {
   'use strict';
-
+    
+    require('angular-cookies'),
+    require('angular-resource');
+    require('angular-sanitize');
+    require('angular-route');
+    require('angular-cache');
+    require('angular-bootstrap');
+    require('angular-intro');
+    require('ng-table');
+  
   var angular = require('angular'),
-    ngCookies = require('angular-cookies'),
-    ngResource = require('angular-resource'),
-    ngSanitize = require('angular-sanitize'),
-    ngRoute = require('angular-route'),
-    cache = require('angular-cache'),
-    bootstrap = require('angular-bootstrap'),
-    angular_intro = require('angular-intro'),
-    ngTable = require('ng-table'),
-
     account = require('account/account'),
     city = require('city/city'),
     commodity = require('commodity/commodity'),
