@@ -4,10 +4,7 @@ ngTrader
 ================
 Simple trading game built in angular. Start with $100 and see how rich you can get in 30 days!
 
-## Try it out [here](http://jarekb84.github.io/ngTrader)
-
-## Todo
-Current backlog can be found [here](todo.todo). Uses SublimeText [PlainTasks](https://sublime.wbond.net/packages/PlainTasks) plugin.
+## Demo [here](http://jarekb84.github.io/ngTrader)
 
 ## Changelog
 **[v0.7.1 released ???]**
