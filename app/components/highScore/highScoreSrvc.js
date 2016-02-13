@@ -2,7 +2,7 @@ define(function() {
   'use strict';
 
   /* @ngInject */
-  var highScoreSrvc = function highScoreSrvc($angularCacheFactory, $filter) {
+  var highScoreSrvc = function($angularCacheFactory, $filter) {
     this.cache = $angularCacheFactory('cache');
     this.highScores = this.cache.get('highScores') || [];
     this.$filter = $filter;

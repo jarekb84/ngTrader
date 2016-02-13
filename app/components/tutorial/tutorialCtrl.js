@@ -7,7 +7,7 @@ define(function() {
   };
 
   tutorialCtrl.prototype.endTutorial = function() {
-    console.log('stuff');
+    
   };
 
   return tutorialCtrl;
